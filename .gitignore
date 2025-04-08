@@ -1,0 +1,25 @@
+# Python virtual environment
+venv/
+ENV/
+env/
+
+# SQLite database files
+*.sqlite3
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# Django secret key
+*.log
+*.pot
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+db.sqlite3
