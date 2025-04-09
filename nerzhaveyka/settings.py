@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tr)!19n^kj1nd#kcdq6)$t-oy#)%@b^yd4p*775^$xlp6oj*6w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '194.87.131.195', 'nerzhaveika.prolabagency.com']
 
 
 
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'rest_framework.authtoken',
     'rest_framework',
     'main',
     'django_filters',
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -135,3 +138,32 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+# CORS settings
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://194.87.131.195:8000',
+    'http://194.87.131.195',
+    'http://nerzhaveika.prolabagency.com',
+    'https://nerzhaveika.prolabagency.com',
+    'http://localhost:8000',
+    'http://localhost',
+    'http://localhost:3000',
+    'http://127.0.0.1',
+    'http://127.0.0.1:3000',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
