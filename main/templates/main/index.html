@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --breakpoint-1200px: 1240px;
+            --breakpoint-1000px: 1040px;
+            --breakpoint-800px: 840px;
+            --breakpoint-600px: 640px;
+            --breakpoint-425px: 445px;
+            --breakpoint-375px: 395px;
+            --breakpoint-320px: 345px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="relative overflow-hidden">
+            <div class="bg-[linear-gradient(219.84deg,_#474747_4.14%,_#222222_44.22%)] max-425px:bg-[#292929] max-425px:bg-linear-0 rotate-y-[180deg] w-full h-full absolute top-0 left-0 z-[-1]"></div>
+            <header class="container flex items-center py-[16px]">
+                <a href="#">
+                    <img src="{% static 'main/img/example.jpg' %}" class="min-w-[207px] w-[207px] max-1000px:min-w-[170px] max-1000px:w-[170px] h-[41px] object-cover">
+                </a>
+                <button class="hidden max-800px:!block max-800px:ml-auto" id="burgerOpen">
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 8.5H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 16.5H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="flex items-center justify-between w-full max-800px:fixed max-800px:top-0 max-800px:left-0 max-800px:w-full max-800px:h-full max-800px:flex-col max-800px:justify-start z-[5] max-800px:bg-[#292929] max-800px:items-start max-800px:translate-x-[-100%] duration-200" id="burgerBody">
+                    <div class="hidden max-800px:block bg-white w-full py-[20px] px-[24px]">
+                        <a href="#" class="flex justify-center">
+                            <img src="{% static 'main/img/example.jpg' %}" class="w-[137px] h-[27px] object-cover">
+                        </a>
+                        <button class="mt-[16px]" id="burgerClose">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.3989 17.3062L7.01452 5.92175C6.64353 5.55075 6.04202 5.55075 5.67102 5.92175L5.60031 5.99246C5.22931 6.36346 5.22931 6.96497 5.60031 7.33597L16.9847 18.7204C17.3557 19.0914 17.9572 19.0914 18.3282 18.7204L18.3989 18.6497C18.7699 18.2787 18.7699 17.6772 18.3989 17.3062Z" fill="#959595"/>
+                                <path d="M16.9849 5.94389L5.60046 17.3283C5.22946 17.6993 5.22946 18.3008 5.60046 18.6718L5.67117 18.7425C6.04217 19.1135 6.64368 19.1135 7.01468 18.7425L18.3991 7.3581C18.7701 6.98711 18.7701 6.3856 18.3991 6.0146L18.3284 5.94389C17.9574 5.57289 17.3559 5.57289 16.9849 5.94389Z" fill="#959595"/>
+                            </svg>                                
+                        </button>
+                    </div>
+                    <nav class="flex items-center gap-[46px] mx-auto max-1000px:gap-[15px] max-800px:gap-[24px] max-800px:flex-col max-800px:pt-[24px] max-800px:mx-0 max-800px:items-start max-800px:px-[24px]">
+                        <a href="{% url 'index' %}" class="text-white font-inter font-[500] text-[16px] max-1000px:text-[14px] max-425px:text-[16px] leading-[19px] nav_animation active">Главная</a>
+                        <a href="{% url 'services' %}" class="text-white font-inter font-[500] text-[16px] max-1000px:text-[14px] max-425px:text-[16px] leading-[19px] nav_animation">Услуги</a>
+                        <a href="{% url 'shop' %}" class="text-white font-inter font-[500] text-[16px] max-1000px:text-[14px] max-425px:text-[16px] leading-[19px] nav_animation">Магазин</a>
+                        <a href="{% url 'gallery' %}" class="text-white font-inter font-[500] text-[16px] max-1000px:text-[14px] max-425px:text-[16px] leading-[19px] nav_animation">Галерея</a>
+                    </nav>
+                    <div class="flex items-center gap-[32px] max-800px:flex-col max-800px:gap-[24px] max-800px:mt-[24px] max-800px:items-start max-800px:px-[24px]">
+                        <div class="flex items-center gap-[8px]">
+                            <div class="flex items-center justify-center max-1000px:w-[15px]">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.45515 11.4666C9.61486 12.6431 11.0181 13.5514 12.5663 14.1278L14.6607 12.4611C14.7228 12.4183 14.7964 12.3954 14.8718 12.3954C14.9472 12.3954 15.0208 12.4183 15.0829 12.4611L18.9718 14.9666C19.1195 15.0554 19.2444 15.1773 19.3369 15.3226C19.4293 15.468 19.4867 15.6329 19.5045 15.8042C19.5223 15.9756 19.5 16.1487 19.4393 16.3099C19.3787 16.4712 19.2814 16.6161 19.1551 16.7333L17.3329 18.5333C17.072 18.7912 16.7512 18.9804 16.3993 19.0841C16.0474 19.1878 15.6754 19.2028 15.3163 19.1278C11.7342 18.3879 8.43244 16.6553 5.78848 14.1278C3.20319 11.5751 1.41419 8.32712 0.638479 4.77776C0.561849 4.42422 0.577843 4.05689 0.68491 3.71135C0.791978 3.36582 0.986488 3.0538 1.24959 2.80553L3.13848 0.983311C3.25537 0.863192 3.39792 0.771074 3.55545 0.713854C3.71298 0.656633 3.88142 0.635793 4.04815 0.652893C4.21488 0.669994 4.37558 0.724592 4.51822 0.8126C4.66086 0.900607 4.78174 1.01974 4.87181 1.16109L7.4607 4.99998C7.50536 5.06026 7.52946 5.13329 7.52946 5.20831C7.52946 5.28333 7.50536 5.35636 7.4607 5.41664L5.75515 7.46664C6.34714 8.98383 7.26944 10.3502 8.45515 11.4666Z" fill="white" />
+                                </svg>
+                            </div>
+                            <div class="flex flex-col gap-[6px] max-800px:flex-row max-425px:gap-[12px]">
+                                <a href="tel:+996 778666555" class="text-white font-inter font-[500] text-[14px] max-1000px:text-[12px] max-1000px:leading-[14px] max-425px:text-[14px] leading-[17px]">+996 778666555</a>
+                                <a href="tel:+996 998666555" class="text-white font-inter font-[500] text-[14px] max-1000px:text-[12px] max-1000px:leading-[14px] max-425px:text-[14px] leading-[17px]">+996 998666555</a>
+                            </div>
+                        </div>
+                        <button class="text-white font-[600] font-poppins bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Контакты</button>
+                        <button class="items-center gap-[20px] py-[10px] hidden max-800px:flex">
+                            <a href="{% url 'gallery' %}" class="text-white font-golos font-[400] base_btn !p-0">Перейти к галерее</a>
+
+                                <div class="w-[18px] h-[18px] flex">
+                                    <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.9167 10.3375L1.375 10.3375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14 1.33752C14 5.19465 22 10.3375 22 10.3375C22 10.3375 14 15.4804 14 19.3375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                        
+                                </div>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <div class="container relative pt-[108px] pb-[97px] max-800px:py-[40px] max-425px:pt-0">
+                <div class="max-w-[616px] max-1200px:max-w-[570px] max-1000px:max-w-[450px] max-800px:max-w-full">
+                    <h1 class="text-white font-[600] text-[48px] leading-[110%] mb-[32px] max-425px:mb-[14px] max-1000px:text-[36px] max-400px:text-[32px]">Лидирующая компания в сфере металлопроката в Кыргызстане</h1>
+                    <p class="text-[#C4C4C4] font-golos font-[500] text-[20px] leading-[24px] max-1000px:text-[16px] max-425px:font-[400]">Мы занимаемся продажей металлопроката уже более 20 лет и накопили колоссальный опыт и запас прочности, который теперь в вашем распоряжении</p>
+                    <div class="flex items-center gap-[10px] mt-[108px] max-800px:mt-[32px] max-425px:mt-[24px]">
+                        <button class="text-white font-golos whitespace-nowrap font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Интернет магазин</button>
+                        <a href="{% url 'gallery' %}" class="flex items-center gap-[14px] base_btn whitespace-nowrap max-800px:hidden">
+                            <span class="text-white font-golos font-[600] text-[16px] leading-[100%]">Перейти к галерее</span>
+                            <div class="max-1000px:w-[25px] max-1000px:h-[16px] flex items-center justify-center">
+                                <svg width="34" height="36" viewBox="0 0 34 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M26.9167 18.3375H6.375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M19 9.33752C19 13.1946 27 18.3375 27 18.3375C27 18.3375 19 23.4804 19 27.3375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <img src="./assets/img/banner.png" class="w-[862px] h-[683px] max-1200px:w-[762px] max-1200px:h-[583px] max-1000px:w-[662px] max-1000px:h-[483px] object-cover rotate-y-[180deg] absolute top-0 right-[-250px] max-800px:hidden">
+            </div>
+        </div>
+        <main>
+            <section class="container flex items-center gap-[33px] pt-[64px] pb-[94px] max-800px:py-[32px] max-800px:flex-col max-800px:gap-[16px] max-425px:gap-[24px]">
+                <div>
+                    <h4 class="text-[#242527] font-golos font-[600] mb-[32px] max-1000px:mb-[20px] max-800px:mb-[10px] base_title_text">GPS-трекеры и электронная пломба для надежного перевоза</h4>
+                    <p class="text-[#61656E] font-golos font-[400] text-[16px] leading-[26px] mb-[20px] max-800px:mb-[10px] max-800px:text-[14px] max-800px:leading-[22px] max-425px:text-[16px]">Perumnas cluster housing is the right choice for those of you who are looking for comfortable, safe and affordable housing. With the cluster concept, you can enjoy the privacy and comfort of living in a beautiful and clean environment. Apart from that, you can also enjoy the various facilities provided, such as playgrounds, sports fields, shopping centers, schools, and others.</p>
+                    <div class="flex items-center gap-[7px]">
+                        <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                            <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0ZM14.442 6C14.061 6.007 13.476 6.207 10.663 7.362C8.68848 8.18629 6.71944 9.02365 4.756 9.874C4.276 10.0627 4.025 10.247 4.003 10.427C3.959 10.773 4.463 10.88 5.097 11.084C5.614 11.25 6.31 11.444 6.672 11.452C7 11.4587 7.366 11.3253 7.77 11.052C10.5293 9.212 11.9537 8.28233 12.043 8.263C12.106 8.249 12.193 8.231 12.253 8.283C12.312 8.335 12.306 8.433 12.299 8.46C12.249 8.671 9.658 10.998 9.509 11.151L9.437 11.223C8.887 11.766 8.332 12.121 9.29 12.744C10.156 13.307 10.66 13.666 11.55 14.244C12.12 14.612 12.567 15.049 13.155 14.996C13.426 14.971 13.705 14.72 13.848 13.97C14.183 12.2 14.843 8.362 14.995 6.78C15.0046 6.64878 14.9989 6.5169 14.978 6.387C14.9657 6.28209 14.9142 6.18569 14.834 6.117C14.713 6.019 14.525 5.999 14.442 6Z" fill="#0C111F" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                            <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0003 1.66663C5.39783 1.66663 1.66699 5.39746 1.66699 9.99996C1.66699 11.575 2.10449 13.05 2.86533 14.3066L2.12199 16.8333C2.07931 16.9784 2.0765 17.1322 2.11386 17.2788C2.15122 17.4253 2.22737 17.5591 2.33429 17.666C2.44122 17.7729 2.57498 17.8491 2.72151 17.8864C2.86804 17.9238 3.02192 17.921 3.16699 17.8783L5.69366 17.135C6.99261 17.9207 8.48219 18.3352 10.0003 18.3333C14.6028 18.3333 18.3337 14.6025 18.3337 9.99996C18.3337 5.39746 14.6028 1.66663 10.0003 1.66663ZM8.11533 11.8858C9.80116 13.5708 11.4103 13.7933 11.9787 13.8141C12.8428 13.8458 13.6845 13.1858 14.012 12.42C14.053 12.3246 14.0678 12.2201 14.0549 12.1171C14.042 12.0141 14.0019 11.9164 13.9387 11.8341C13.482 11.2508 12.8645 10.8316 12.2612 10.415C12.1353 10.3277 11.9804 10.2926 11.8292 10.3171C11.6779 10.3417 11.5421 10.424 11.4503 10.5466L10.9503 11.3091C10.9239 11.35 10.8829 11.3792 10.8357 11.391C10.7886 11.4027 10.7387 11.3961 10.6962 11.3725C10.357 11.1783 9.86283 10.8483 9.50783 10.4933C9.15283 10.1383 8.84283 9.66663 8.66866 9.34913C8.64759 9.30867 8.64164 9.26203 8.65187 9.21758C8.6621 9.17313 8.68785 9.13379 8.72449 9.10663L9.49449 8.53496C9.6047 8.43962 9.67585 8.30697 9.6943 8.16242C9.71275 8.01787 9.67721 7.87159 9.59449 7.75163C9.22116 7.20496 8.78616 6.50996 8.15533 6.04913C8.07374 5.99051 7.9784 5.95395 7.87854 5.943C7.77867 5.93205 7.67768 5.94708 7.58533 5.98663C6.81866 6.31496 6.15533 7.15663 6.18699 8.02246C6.20783 8.59079 6.43033 10.2 8.11533 11.8858Z" fill="#0C111F" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                            <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M26 13H13.9688C13.4375 13 13 13.4688 13 14.0312V26C13 26.5625 13.4375 27 13.9688 27H26C26.5312 27 27 26.5625 27 26V14.0312C27 13.4688 26.5312 13 26 13ZM17.2188 25H15.1562V18.3438H17.2188V25ZM16.1875 17.4062C15.5 17.4062 14.9688 16.875 14.9688 16.2188C14.9688 15.5625 15.5 15 16.1875 15C16.8438 15 17.375 15.5625 17.375 16.2188C17.375 16.875 16.8438 17.4062 16.1875 17.4062ZM25 25H22.9062V21.75C22.9062 21 22.9062 20 21.8438 20C20.75 20 20.5938 20.8438 20.5938 21.7188V25H18.5312V18.3438H20.5V19.25H20.5312C20.8125 18.7188 21.5 18.1562 22.5 18.1562C24.5938 18.1562 25 19.5625 25 21.3438V25Z"fill="#0C111F" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <img src="{% static 'main/img/example.jpg' %}" class="w-[516px] min-w-[516px] max-1000px:w-[416px] max-1000px:min-w-[416px] max-1000px:h-[280px] max-600px:h-[250px] max-800px:w-full max-800px:min-w-full h-[344px] object-cover object-top max-800px:object-[0px_-60px] max-600px:object-[0px_-40px]">
+            </section>
+            <section class="container">
+                <div class="flex items-center justify-between mb-[32px] max-800px:mb-[16px] max-425px:mb-[24px]">
+                    <h4 class="text-[#242527] font-golos font-[600] base_title_text">Что мы вам предлагаем</h4>
+                    <a href="{% url 'gallery' %}" class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
+                </div>
+                <div class="grid grid-cols-2 max-600px:grid-cols-1 gap-[16px]">
+                    <div class="bg-[#F4F6FA] relative p-[25px] pb-[127px] max-600px:pb-[150px] max-425px:p-[17px] max-425px:pb-[140px]">
+                        <p class="text-[#333333] font-inter font-[700] text-[24px] max-800px:text-[20px] leading-[24px] max-800px:leading-[22px] max-w-[366px] max-800px:max-w-full mb-[20px] max-800px:mb-[10px]">Б/у запчасти для грузовых авто из Европы</p>
+                        <p class="text-[#333333CC] font-golos font-[400] text-[16px] max-800px:text-[14px] leading-[19px] max-800px:max-w-full max-w-[304px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.</p>
+                        <img src="./assets/img/custom_2.jpeg" class="w-[342px] h-[271px] max-1200px:w-[222px] max-1200px:h-[220px] max-1000px:w-[150px] max-1000px:h-[150px] mix-blend-multiply object-cover absolute bottom-0 right-0 rotate-y-[180deg]">
+                    </div>
+                    <div class="bg-[#F4F6FA] relative p-[25px] pb-[127px] max-600px:pb-[150px] max-425px:p-[17px] max-425px:pb-[140px]">
+                        <p class="text-[#333333] font-inter font-[700] text-[24px] max-800px:text-[20px] leading-[24px] max-800px:leading-[22px] max-w-[366px] max-800px:max-w-full mb-[20px] max-800px:mb-[10px]">Автомойка грузовых и легковых авто</p>
+                        <p class="text-[#333333CC] font-golos font-[400] text-[16px] max-800px:text-[14px] leading-[19px] max-800px:max-w-full max-w-[284px] max-1000px:max-w-[250px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.</p>
+                        <img src="./assets/img/custom_3.png" class="w-[225px] h-[215px] max-1200px:w-[200px] max-1200px:h-[150px] mix-blend-multiply object-cover absolute bottom-0 right-[22px] rotate-y-[180deg]">
+                    </div>
+                    <div class="bg-[#F4F6FA] relative p-[25px] pb-[127px] max-600px:pb-[150px] max-425px:p-[17px] max-425px:pb-[140px]">
+                        <p class="text-[#333333] font-inter font-[700] text-[24px] max-800px:text-[20px] leading-[24px] max-800px:leading-[22px] max-w-[366px] max-800px:max-w-full mb-[20px] max-800px:mb-[10px]">Магазин аксессуаров</p>
+                        <p class="text-[#333333CC] font-golos font-[400] text-[16px] max-800px:text-[14px] leading-[19px] max-800px:max-w-full max-w-[360px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.</p>
+                        <img src="./assets/img/custom_4.png" class="w-[300px] h-[169px] max-1200px:w-[250px] max-1200px:h-[150px] mix-blend-multiply object-cover absolute bottom-[15px] right-0">
+                    </div>
+                    <div class="bg-[#F4F6FA] relative p-[25px] pb-[127px] max-600px:pb-[150px] max-425px:p-[17px] max-425px:pb-[140px]">
+                        <p class="text-[#333333] font-inter font-[700] text-[24px] max-800px:text-[20px] leading-[24px] max-800px:leading-[22px] max-w-[350px] max-800px:max-w-full mb-[20px] max-800px:mb-[10px]">Пункт замены масла легковых авто</p>
+                        <p class="text-[#333333CC] font-golos font-[400] text-[16px] max-800px:text-[14px] leading-[19px] max-800px:max-w-full max-w-[345px] max-1000px:max-w-[240px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.</p>
+                        <img src="./assets/img/custom_5.png" class="w-[219px] h-[174px] max-1200px:w-[200px] max-1200px:h-[150px] max-1200px:right-[0px] max-1200px:bottom-[0px] object-cover absolute bottom-[20px] right-[16px]">
+                    </div>
+                </div>
+            </section>
+            <section class="container py-[100px] max-800px:py-[32px]">
+                <div class="flex items-center justify-between mb-[32px] max-800px:mb-[16px] max-425px:mb-[24px]">
+                    <h4 class="text-[#242527] font-golos font-[600] base_title_text">Интернет магазин</h4>
+                    <a href="{% url 'gallery' %}"class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
+                </div>
+                <div class="swiper mySwiperMarket !hidden max-600px:!block">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden">
+                            <div class="h-[155px]">
+                                <img src="./assets/img/custom_6.jpeg" class="w-full h-full object-contain mix-blend-multiply">
+                            </div>
+                            <div class="px-[16px] pb-[16px]">
+                                <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">Нержавейка</a>
+                                <a href="#" class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et,</a>
+                                <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
+                                <div class="mb-[20px] flex items-center justify-between">
+                                    <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Price</p>
+                                    <a href="#" class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">$1,800 <span class="text-[#9C9C9C] font-[400]">/day</span></a>
+                                </div>
+                                <button class="font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</button>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="swiper-slide">
+                        <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden">
+                            <div class="h-[155px]">
+                                <img src="./assets/img/custom_6.jpeg" class="w-full h-full object-contain mix-blend-multiply">
+                            </div>
+                            <div class="px-[16px] pb-[16px]">
+                                <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">Нержавейка</a>
+                                <a href="#" class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et,</a>
+                                <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
+                                <div class="mb-[20px] flex items-center justify-between">
+                                    <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Price</p>
+                                    <a href="#" class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">$1,800 <span class="text-[#9C9C9C] font-[400]">/day</span></a>
+                                </div>
+                                <button class="font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                 
+                  <div class="grid grid-cols-4 gap-[24px] max-1000px:grid-cols-2 max-600px:grid-cols-1">
+                    {% for product in products %}
+                    <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden bg-white">
+                        <div class="h-[155px]">
+                            <img src="{{ product.image1.url }}" alt="{{ product.title }}" class="w-full h-full object-contain mix-blend-multiply">
+                        </div>
+                        <div class="px-[16px] pb-[16px]">
+                            <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">{{ product.title }}</a>
+                            <p class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">{{ product.description|truncatechars:90 }}</p>
+                            <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
+                            <div class="mb-[20px] flex items-center justify-between">
+                                <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Цена</p>
+                                <span class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">${{ product.price }}</span>
+                            </div>
+                            <a href="{% url 'product_detail' product.pk %}" class="block text-center font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                  
+                    {% comment %} <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden">
+                        <div class="h-[155px]">
+                            <img src="./assets/img/custom_6.jpeg" class="w-full h-full object-contain mix-blend-multiply">
+                        </div>
+                        <div class="px-[16px] pb-[16px]">
+                            <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">Нержавейка</a>
+                            <a href="#" class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et,</a>
+                            <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
+                            <div class="mb-[20px] flex items-center justify-between">
+                                <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Price</p>
+                                <a href="#" class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">$1,800 <span class="text-[#9C9C9C] font-[400]">/day</span></a>
+                            </div>
+                            <button class="font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</button>
+                        </div>
+                    </div> {% endcomment %}
+                    {% comment %} <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden">
+                        <div class="h-[155px]">
+                            <img src="./assets/img/custom_6.jpeg" class="w-full h-full object-contain mix-blend-multiply">
+                        </div>
+                        <div class="px-[16px] pb-[16px]">
+                            <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">Нержавейка</a>
+                            <a href="#" class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et,</a>
+                            <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
+                            <div class="mb-[20px] flex items-center justify-between">
+                                <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Price</p>
+                                <a href="#" class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">$1,800 <span class="text-[#9C9C9C] font-[400]">/day</span></a>
+                            </div>
+                            <button class="font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</button>
+                        </div>
+                    </div>
+                    <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden">
+                        <div class="h-[155px]">
+                            <img src="./assets/img/custom_6.jpeg" class="w-full h-full object-contain mix-blend-multiply">
+                        </div>
+                        <div class="px-[16px] pb-[16px]">
+                            <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">Нержавейка</a>
+                            <a href="#" class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et,</a>
+                            <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
+                            <div class="mb-[20px] flex items-center justify-between">
+                                <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Price</p>
+                                <a href="#" class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">$1,800 <span class="text-[#9C9C9C] font-[400]">/day</span></a>
+                            </div>
+                            <button class="font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</button>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+         
+            </section>
+            <section class="container">
+                <div class="flex items-center justify-between mb-[32px] max-800px:mb-[16px] max-425px:mb-[24px] max-425px:gap-[50px] max-375px:gap-[0]">
+                    <h4 class="text-[#242527] font-golos font-[600] base_title_text">Наши завершенные работы</h4>
+                    <a href="{% url 'services' %}" class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
+                </div>
+                <div class="flex flex-col gap-[16px] max-800px:gap-[8px]">
+                    <div class="grid grid-rows-[230px_230px] max-1000px:grid-rows-[150px_150px] max-800px:grid-rows-[100px_100px] grid-cols-[1fr_515px] max-1000px:grid-cols-[1fr_250px] gap-[16px] max-800px:gap-[8px] max-600px:grid-cols-2 max-600px:grid-rows-[229px_170px]">
+                        <img src="./assets/img/custom_7.jpeg" class="w-full h-full object-cover row-[1/3] max-600px:row-[1/1] max-600px:col-[1/3]">
+                        <img src="./assets/img/custom_7.jpeg" class="w-full h-full object-cover row-[1/2] max-600px:row-[2/2]">
+                        <img src="./assets/img/custom_7.jpeg" class="w-full h-full object-cover row-[2/3]">
+                    </div>
+                    <div class="grid grid-rows-[230px_230px] max-1000px:grid-rows-[150px_150px] max-800px:grid-rows-[100px_100px] grid-cols-[515px_1fr] max-1000px:grid-cols-[250px_1fr] gap-[16px] max-800px:gap-[8px] max-600px:hidden">
+                        <img src="./assets/img/custom_7.jpeg" class="w-full h-full object-cover row-[1/2]">
+                        <img src="./assets/img/custom_7.jpeg" class="w-full h-full object-cover row-[2/3]">
+                        <img src="./assets/img/custom_7.jpeg" class="w-full h-full object-cover row-[1/3]">
+                    </div>
+                </div>
+            </section>
+            <section class="bg-[#F4F4F4] max-600px:bg-transparent relative my-[94px] max-800px:my-[32px]">
+                <div class="container py-[90px] max-1000px:py-[70px] max-800px:py-[32px] max-425px:py-0">
+                    <div>
+                        <h4 class="text-[#242527] font-golos font-[500] base_title_text mb-[40px] max-800px:mb-[16px]">Где мы находимся?</h4>
+                        <div class="flex flex-col gap-[26px] max-1000px:max-w-[50%] max-800px:max-w-full max-800px:gap-[12px]">
+                            <a href="#" class="flex items-center gap-[36px] max-1000px:gap-[20px] max-800px:gap-[12px]">
+                                <div class="w-[34px]">
+                                    <svg width="24" height="30" viewBox="0 0 24 30" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.8182 11.7857C21.8182 9.22827 20.7838 6.77557 18.9425 4.96718C17.1012 3.1588 14.6039 2.14286 12 2.14286C9.39606 2.14286 6.89876 3.1588 5.0575 4.96718C3.21623 6.77557 2.18182 9.22827 2.18182 11.7857C2.18182 15.7414 5.40436 20.8971 12 27.0729C18.5956 20.8971 21.8182 15.7414 21.8182 11.7857ZM12 30C3.99927 22.8579 0 16.785 0 11.7857C0 8.65995 1.26428 5.66221 3.51472 3.45196C5.76516 1.24171 8.8174 0 12 0C15.1826 0 18.2348 1.24171 20.4853 3.45196C22.7357 5.66221 24 8.65995 24 11.7857C24 16.785 20.0007 22.8579 12 30Z" fill="#1572D3" />
+                                        <path d="M12.0004 15C12.9199 15 13.8016 14.6839 14.4517 14.1213C15.1019 13.5587 15.4671 12.7956 15.4671 12C15.4671 11.2044 15.1019 10.4413 14.4517 9.87868C13.8016 9.31607 12.9199 9 12.0004 9C11.081 9 10.1993 9.31607 9.54913 9.87868C8.899 10.4413 8.53377 11.2044 8.53377 12C8.53377 12.7956 8.899 13.5587 9.54913 14.1213C10.1993 14.6839 11.081 15 12.0004 15ZM12.0004 17C10.4681 17 8.99847 16.4732 7.91493 15.5355C6.83138 14.5979 6.22266 13.3261 6.22266 12C6.22266 10.6739 6.83138 9.40215 7.91493 8.46447C8.99847 7.52678 10.4681 7 12.0004 7C13.5328 7 15.0024 7.52678 16.0859 8.46447C17.1695 9.40215 17.7782 10.6739 17.7782 12C17.7782 13.3261 17.1695 14.5979 16.0859 15.5355C15.0024 16.4732 13.5328 17 12.0004 17Z" fill="#1572D3" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-[#000000] font-golos font-[400] text-[20px] leading-[32px]">Наш Адрес</p>
+                                    <p class="text-[#000000] font-golos font-[400] text-[18px] leading-[32px]">Курманжан Датка 646.а</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-[36px] max-1000px:gap-[20px] max-800px:gap-[12px]">
+                                <div class="w-[34px]">
+                                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.6455 3.23708C8.87747 2.78828 7.02447 2.97868 5.57268 3.79128C4.09367 4.61748 3.05667 6.08288 3.00567 8.04298C2.92747 11.1064 3.63637 15.217 6.45157 20.0416C9.23107 24.8067 12.2996 27.6627 14.8462 29.3593C16.4544 30.432 18.2309 30.4609 19.749 29.7622C21.245 29.0737 22.4588 27.6984 23.0895 25.9933C23.2464 25.5692 23.3095 25.1161 23.2743 24.6653C23.2391 24.2144 23.1064 23.7766 22.8855 23.3821L21.2637 20.4887C20.7651 19.5982 19.9628 18.9168 19.0033 18.5691C18.0438 18.2213 16.9912 18.2305 16.0379 18.5949L14.9057 19.0284C14.3566 19.2375 13.8517 19.1406 13.5661 18.8584C12.6056 17.9149 11.9188 16.6348 11.6077 15.2544C11.5091 14.8192 11.7097 14.3058 12.1891 13.9437L13.2108 13.1719C14.0368 12.5486 14.607 11.6454 14.8145 10.6316C15.022 9.6179 14.8525 8.56328 14.3379 7.66558L12.6855 4.78408C12.4666 4.40259 12.1731 4.06904 11.8227 3.80327C11.4722 3.5375 11.0719 3.34495 10.6455 3.23708ZM4.70567 8.08888C4.73967 6.77308 5.40608 5.83298 6.40228 5.27538C7.42568 4.70248 8.82307 4.52738 10.2273 4.88438C10.433 4.93634 10.6262 5.0292 10.7953 5.15742C10.9644 5.28564 11.106 5.44659 11.2116 5.63068L12.8623 8.51218C13.171 9.05058 13.2728 9.68309 13.1486 10.2912C13.0243 10.8992 12.6826 11.4411 12.1874 11.8153L11.1657 12.5871C10.2817 13.2535 9.66967 14.3959 9.94847 15.6284C10.3259 17.2978 11.1606 18.8805 12.3744 20.0722C13.2618 20.9426 14.5266 20.9936 15.5126 20.6162L16.6448 20.1827C17.2168 19.9637 17.8485 19.958 18.4245 20.1665C19.0004 20.375 19.482 20.7839 19.7813 21.3183L21.4014 24.2134C21.6054 24.5772 21.6394 25.0124 21.4949 25.4034C21.0019 26.7379 20.0754 27.7392 19.0384 28.2169C18.0235 28.6844 16.876 28.6708 15.7897 27.9449C13.459 26.3911 10.5707 23.7272 7.91868 19.1848C5.26498 14.6288 4.63597 10.831 4.70737 8.08888H4.70567ZM21.1991 3.14528C21.002 3.03572 20.7696 3.00891 20.5528 3.07076C20.336 3.13261 20.1526 3.27805 20.0431 3.47508C19.9335 3.67211 19.9067 3.90459 19.9686 4.12138C20.0304 4.33817 20.1758 4.52152 20.3729 4.63108L21.0257 4.99488C23.065 6.12777 24.7997 7.73757 26.0816 9.68672C27.3635 11.6359 28.1544 13.8664 28.3867 16.1877L28.4411 16.7232C28.4475 16.8378 28.4771 16.9499 28.528 17.0528C28.5789 17.1557 28.6502 17.2472 28.7374 17.3218C28.8247 17.3964 28.9262 17.4525 29.0357 17.4868C29.1452 17.5211 29.2606 17.5329 29.3748 17.5214C29.489 17.5099 29.5998 17.4754 29.7003 17.4199C29.8008 17.3645 29.889 17.2893 29.9597 17.1988C30.0303 17.1083 30.0819 17.0045 30.1114 16.8935C30.1408 16.7825 30.1474 16.6668 30.1309 16.5532L30.0782 16.0194C29.8188 13.4245 28.9349 10.931 27.502 8.75208C26.0691 6.57317 24.1299 4.77365 21.8502 3.50738L21.1991 3.14528ZM19.2067 7.70128C19.3228 7.50811 19.5109 7.36897 19.7296 7.31446C19.9483 7.25994 20.1797 7.29452 20.3729 7.41058L20.5837 7.53638C21.9559 8.3591 23.1331 9.47 24.0339 10.7923C24.9347 12.1146 25.5376 13.6167 25.801 15.1949L25.8758 15.6488C25.8972 15.7601 25.8961 15.8745 25.8726 15.9854C25.8491 16.0963 25.8036 16.2014 25.7389 16.2944C25.6742 16.3875 25.5916 16.4667 25.4958 16.5273C25.4001 16.588 25.2931 16.6288 25.1813 16.6475C25.0696 16.6663 24.9551 16.6624 24.8449 16.6362C24.7346 16.6101 24.6306 16.5621 24.5392 16.4952C24.4477 16.4283 24.3705 16.3437 24.3122 16.2465C24.2539 16.1494 24.2156 16.0415 24.1996 15.9293L24.1231 15.4754C23.9006 14.1403 23.391 12.8694 22.6293 11.7505C21.8676 10.6316 20.8721 9.69147 19.7116 8.99498L19.5008 8.86748C19.405 8.81012 19.3214 8.73445 19.2549 8.64479C19.1884 8.55513 19.1401 8.45325 19.113 8.34495C19.0858 8.23665 19.0803 8.12407 19.0966 8.01362C19.113 7.90318 19.151 7.79704 19.2084 7.70128H19.2067Z" fill="#1572D3" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-[#000000] font-golos font-[400] text-[20px] leading-[32px]">Телефон</p>
+                                    <p class="text-[#000000] font-golos font-[400] text-[18px] leading-[32px]">0778666555
+                                        0998666555</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-[36px] max-1000px:gap-[20px] max-800px:gap-[12px]">
+                                <div class="w-[34px]">
+                                    <svg width="34" height="37" viewBox="0 0 34 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M30.224 6.5H3.77951C3.27855 6.5 2.7981 6.71071 2.44387 7.08579C2.08963 7.46086 1.89063 7.96957 1.89062 8.5V28.5C1.89063 29.0304 2.08963 29.5391 2.44387 29.9142C2.7981 30.2893 3.27855 30.5 3.77951 30.5H30.224C30.7249 30.5 31.2054 30.2893 31.5596 29.9142C31.9138 29.5391 32.1128 29.0304 32.1128 28.5V8.5C32.1128 7.96957 31.9138 7.46086 31.5596 7.08579C31.2054 6.71071 30.7249 6.5 30.224 6.5ZM28.7695 28.5H5.34729L11.9584 21.26L10.5984 19.87L3.77951 27.34V10.02L15.519 22.39C15.8729 22.7625 16.3516 22.9716 16.8506 22.9716C17.3496 22.9716 17.8284 22.7625 18.1823 22.39L30.224 9.71V27.21L23.2728 19.85L21.9412 21.26L28.7695 28.5ZM5.01674 8.5H28.694L16.8506 20.97L5.01674 8.5Z" fill="#1572D3" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-[#000000] font-golos font-[400] text-[20px] leading-[32px]">Эл. адрес</p>
+                                    <p class="text-[#000000] font-golos font-[400] text-[18px] leading-[32px]">office@prolab.academy</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <iframe class="h-full absolute top-0 right-0 w-[50%] max-1200px:w-[45%] max-800px:static max-800px:w-full max-800px:h-[300px] max-800px:mt-[24px]" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12130.073411312022!2d72.7924497!3d40.5301358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2skg!4v1743412688649!5m2!1ses!2skg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </section>
+            <section class="container relative pt-[320px] max-1000px:pt-[250px] max-800px:pt-0 max-800px:pb-[32px] max-425px:pb-[20px] max-425px:p-0">
+                <div class="px-[90px] max-1000px:px-[30px] absolute top-0 left-0 z-[2] max-800px:static max-800px:px-0">
+                    <div class="shadow-[0px_10px_15px_0px_#00000014] bg-[linear-gradient(219.84deg,_#474747_4.14%,_#222222_44.22%)] py-[46px] max-1000px:py-[32px] px-[32px] grid grid-cols-2 max-800px:grid-cols-1 gap-[70px] max-1000px:gap-[50px] max-425px:p-[20px]">
+                        <form method="post" action="{% url 'send_question' %}" class="px-[20px] max-1000px:px-0">
+                            {% csrf_token %}
+                            <h4 class="font-golos font-[700] text-[48px] text-white leading-[58px] max-1200px:text-[42px] max-1200px:leading-[44px] max-800px:text-[34px] max-800px:leading-[34px] mb-[16px] max-425px:text-[32px]">
+                                Остались <br class="max-800px:hidden"> вопросы?
+                            </h4>
+                            <p class="text-white font-golos font-[400] text-[18px] leading-[22px] max-1200px:text-[16px] max-800px:text-[14px] max-1200px:leading-[20px]">                                
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.
+                            </p>
+                            <div class="mt-[70px] flex flex-col gap-[20px] max-800px:gap-[12px] max-800px:mt-[40px]">
+                                <input type="text" name="name" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                <input type="tel" name="phone" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                <button type="submit" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
+                                    Discover More
+                                </button>
+                            </div>
+                        </form>
+                        <div class="flex items-center justify-center max-800px:hidden">
+                            <img src="./assets/img/custom_8.png" class="w-[441px] h-[441px] object-contain">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="relative pt-[280px] max-1200px:pt-[290px] max-800px:pt-[56px] max-425px:pt-[24px]">
+            <div class="absolute top-0 left-0 w-full h-full bg-[linear-gradient(219.84deg,_#474747_4.14%,_#222222_44.22%)] rotate-y-[180deg] z-[-1]"></div>
+            <div class="container">
+                <div>
+                    <div class="flex justify-between max-600px:flex-wrap max-600px:gap-[24px]">
+                        <div>
+                            <a href="#" class="text-white font-golos font-[600] text-[24px] leading-[29px]">Нержавейка</a>
+                            <p class="text-white font-golos font-[400] text-[16px] leading-[28px] my-[24px] max-w-[547px] max-1000px:max-w-[450px]">Интернет-магазин запчастей из нержавеющей стали и сервис по оказанию профильных услуг. Более 5 лет опыта в надежных решениях для вашего бизнеса и дома.</p>
+                            <div class="flex items-center gap-[7px]">
+                                <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                                    <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0ZM14.442 6C14.061 6.007 13.476 6.207 10.663 7.362C8.68848 8.18629 6.71944 9.02365 4.756 9.874C4.276 10.0627 4.025 10.247 4.003 10.427C3.959 10.773 4.463 10.88 5.097 11.084C5.614 11.25 6.31 11.444 6.672 11.452C7 11.4587 7.366 11.3253 7.77 11.052C10.5293 9.212 11.9537 8.28233 12.043 8.263C12.106 8.249 12.193 8.231 12.253 8.283C12.312 8.335 12.306 8.433 12.299 8.46C12.249 8.671 9.658 10.998 9.509 11.151L9.437 11.223C8.887 11.766 8.332 12.121 9.29 12.744C10.156 13.307 10.66 13.666 11.55 14.244C12.12 14.612 12.567 15.049 13.155 14.996C13.426 14.971 13.705 14.72 13.848 13.97C14.183 12.2 14.843 8.362 14.995 6.78C15.0046 6.64878 14.9989 6.5169 14.978 6.387C14.9657 6.28209 14.9142 6.18569 14.834 6.117C14.713 6.019 14.525 5.999 14.442 6Z" fill="white" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                                    <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0003 1.6665C5.39783 1.6665 1.66699 5.39734 1.66699 9.99984C1.66699 11.5748 2.10449 13.0498 2.86533 14.3065L2.12199 16.8332C2.07931 16.9782 2.0765 17.1321 2.11386 17.2787C2.15122 17.4252 2.22737 17.5589 2.33429 17.6659C2.44122 17.7728 2.57498 17.8489 2.72151 17.8863C2.86804 17.9237 3.02192 17.9209 3.16699 17.8782L5.69366 17.1348C6.99261 17.9206 8.48219 18.3351 10.0003 18.3332C14.6028 18.3332 18.3337 14.6023 18.3337 9.99984C18.3337 5.39734 14.6028 1.6665 10.0003 1.6665ZM8.11533 11.8857C9.80116 13.5707 11.4103 13.7932 11.9787 13.814C12.8428 13.8457 13.6845 13.1857 14.012 12.4198C14.053 12.3245 14.0678 12.2199 14.0549 12.117C14.042 12.014 14.0019 11.9163 13.9387 11.834C13.482 11.2507 12.8645 10.8315 12.2612 10.4148C12.1353 10.3275 11.9804 10.2925 11.8292 10.317C11.6779 10.3416 11.5421 10.4238 11.4503 10.5465L10.9503 11.309C10.9239 11.3498 10.8829 11.3791 10.8357 11.3909C10.7886 11.4026 10.7387 11.396 10.6962 11.3723C10.357 11.1782 9.86283 10.8482 9.50783 10.4932C9.15283 10.1382 8.84283 9.6665 8.66866 9.349C8.64759 9.30855 8.64164 9.26191 8.65187 9.21746C8.6621 9.17301 8.68785 9.13367 8.72449 9.1065L9.49449 8.53484C9.6047 8.4395 9.67585 8.30684 9.6943 8.1623C9.71275 8.01775 9.67721 7.87147 9.59449 7.7515C9.22116 7.20484 8.78616 6.50984 8.15533 6.049C8.07374 5.99039 7.9784 5.95383 7.87854 5.94288C7.77867 5.93193 7.67768 5.94696 7.58533 5.9865C6.81866 6.31484 6.15533 7.1565 6.18699 8.02234C6.20783 8.59067 6.43033 10.1998 8.11533 11.8857Z" fill="white" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                                    <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M26 13H13.9688C13.4375 13 13 13.4688 13 14.0312V26C13 26.5625 13.4375 27 13.9688 27H26C26.5312 27 27 26.5625 27 26V14.0312C27 13.4688 26.5312 13 26 13ZM17.2188 25H15.1562V18.3438H17.2188V25ZM16.1875 17.4062C15.5 17.4062 14.9688 16.875 14.9688 16.2188C14.9688 15.5625 15.5 15 16.1875 15C16.8438 15 17.375 15.5625 17.375 16.2188C17.375 16.875 16.8438 17.4062 16.1875 17.4062ZM25 25H22.9062V21.75C22.9062 21 22.9062 20 21.8438 20C20.75 20 20.5938 20.8438 20.5938 21.7188V25H18.5312V18.3438H20.5V19.25H20.5312C20.8125 18.7188 21.5 18.1562 22.5 18.1562C24.5938 18.1562 25 19.5625 25 21.3438V25Z" fill="white" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex gap-[104px] max-800px:gap-[40px] max-600px:gap-[80px] max-425px:justify-between max-425px:w-full">
+                            <div>
+                                <p class="text-white font-golos font-[700] text-[18px] leading-[22px] mb-[32px]">Компания</p>
+                                <div class="flex flex-col gap-[16px]">
+                                    <a href="{% url 'index' %}" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Главная</a>
+                                    <a href="{% url 'services' %}" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Услуги</a>
+                                    <a href="{% url 'category' %}" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Магазины</a>
+                                    <a href="{% url 'gallery' %}" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Галерея</a>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-white font-golos font-[700] text-[18px] leading-[22px] mb-[32px]">Еще</p>
+                                <div class="flex flex-col gap-[16px]">
+                                    <a href="#" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Контакты</a>
+                                    <a href="#" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Адрес</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-[43px] pb-[56px] max-425px:pb-[24px]">
+                        <p class="text-white font-nunito font-[500] text-[12px] leading-[16px]">Создание сайта <a href="#" class="font-[700]">'PROlab Agency'</a></p>
+                        <p class="text-white font-nunito font-[500] text-[12px] leading-[16px]">© 2024 Все права защищены. </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{% static 'main/acript.js' %}"></script>
+    <script>
+         var swiper = new Swiper(".mySwiperMarket", {
+            spaceBetween: 10,
+            slidesPerView: 1.2,
+        })
+    </script>
+</body>
+
+</html>

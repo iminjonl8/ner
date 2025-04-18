@@ -1,11 +1,13 @@
-from django.db import models
-from django.utils import timezone
+from django.db import models 
+
+
+
 
 class Case(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='cases/')
     description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)  # ✅ fixed
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -14,14 +16,14 @@ class Case(models.Model):
 
     def __str__(self):
         return self.title
-# Услуги
+
+
 class Service(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='services/')
     cases = models.ManyToManyField(Case, blank=True, related_name='services')
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -33,17 +35,11 @@ class Service(models.Model):
         return self.title
 
 
-# Категория и подкатегория товаров
-from django.db import models
-from django.utils import timezone
-
 class ProductCategory(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-  # ✅ vaqtincha
 
     class Meta:
         verbose_name = "Категория товаров"
@@ -53,8 +49,6 @@ class ProductCategory(models.Model):
         return self.name
 
 
-
-
 class ProductSubcategory(models.Model):
     category = models.ForeignKey(
         ProductCategory,
@@ -62,7 +56,6 @@ class ProductSubcategory(models.Model):
         related_name='subcategories'
     )
     name = models.CharField(max_length=255)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -74,7 +67,6 @@ class ProductSubcategory(models.Model):
         return f"{self.category.name} — {self.name}"
 
 
-# Продукты
 class Product(models.Model):
     subcategory = models.ForeignKey(
         ProductSubcategory,
@@ -89,7 +81,6 @@ class Product(models.Model):
     image3 = models.ImageField(upload_to='products/', blank=True, null=True)
     image4 = models.ImageField(upload_to='products/', blank=True, null=True)
 
-    # Флаги
     is_new = models.BooleanField(default=False)
     is_hit = models.BooleanField(default=False)
     is_on_sale = models.BooleanField(default=False)
@@ -105,7 +96,14 @@ class Product(models.Model):
         return self.title
 
 
-# Заявка на услугу
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='products/extra/')
+
+    def __str__(self):
+        return f"Доп. изображение к {self.product.title}"
+
+
 class ServiceRequest(models.Model):
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
@@ -122,7 +120,6 @@ class ServiceRequest(models.Model):
         return f"Заявка от {self.name} (услуга)"
 
 
-# Заявка на продукт
 class ProductRequest(models.Model):
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
@@ -139,7 +136,6 @@ class ProductRequest(models.Model):
         return f"Заявка от {self.name} (товар)"
 
 
-# Обратная связь
 class Feedback(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
@@ -153,3 +149,34 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"Сообщение от {self.name}"
+
+
+
+class GalleryItem(models.Model):
+    image = models.ImageField(upload_to='gallery/')
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='gallery_items')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Изображение для: {self.service.title}"
+
+class Question(models.Model):
+    name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Car(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    type = models.CharField(max_length=100)
+    capacity = models.CharField(max_length=100)
+    steering = models.CharField(max_length=100)
+    gasoline = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='cars/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    
+    def __str__(self):
+         return self.title

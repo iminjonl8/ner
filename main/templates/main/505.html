@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+        --breakpoint-1200px: 1240px;
+        --breakpoint-1000px: 1040px;
+        --breakpoint-800px: 840px;
+        --breakpoint-600px: 640px;
+        --breakpoint-425px: 445px;
+        --breakpoint-375px: 395px;
+        --breakpoint-320px: 345px;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="relative flex items-center justify-center w-full h-[100dvh] max-800px:p-[20px]">
+        <img src="./assets/img/custom_9.jpeg" class="w-full h-full fixed top-0 left-0 object-cover" />
+        <div class="w-full h-full fixed top-0 left-0 bg-[#0000004D]"></div>
+        <div class="w-[613px] max-800px:w-full bg-white p-[32px] relative flex flex-col items-center gap-[24px] max-375px:gap-[18px]">
+            <h4 class="text-[#2D2E2E] font-inter font-[600] text-[32px] leading-[39px] text-center max-375px:text-[28px] max-375px:leading-[28px]">505: Внутренняя ошибка сервера</h4>
+            <p class="text-[#2D2E2E] font-inter font-[400] text-[16px] leading-[22px] text-center max-375px:text-[14px] max-375px:leading-[18px]">Мы уже работаем над исправлением! Извините за временные неудобства и спасибо за ваше терпение!</p>
+            <a href="/index.html" class="text-white font-inter font-[500] text-[18px] leading-[22px] py-[17px] px-[30px] rounded-[4px] bg-[#1572D3] max-375px:text-[16px] max-375px:leading-[16px]">Вернуться</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+/* @theme {
+    --breakpoint-1200px: 1240px;
+    --breakpoint-1000px: 1040px;
+    --breakpoint-800px: 840px;
+    --breakpoint-600px: 640px;
+    --breakpoint-425px: 445px;
+    --breakpoint-375px: 395px;
+    --breakpoint-320px: 345px;
+} */
+
+button,
+select {
+    cursor: pointer;
+}
+
+.font-poppins {
+    font-family: "Poppins", sans-serif;
+}
+
+.font-golos {
+    font-family: "Golos Text", sans-serif;
+}
+
+.font-inter {
+    font-family: "Inter", sans-serif;
+}
+
+.font-nunito {
+    font-family: "Nunito", sans-serif;
+}
+
+.font-nato {
+    font-family: "Noto Sans", sans-serif;
+}
+
+.font-plus {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.nav_animation {
+    position: relative;
+}
+
+.nav_animation::before {
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.2s;
+}
+
+.nav_animation:hover:before,
+.nav_animation.active::before {
+    width: 100%;
+}
+
+.mySwiper .swiper-slide {
+    opacity: 0.4;
+    transition: 0.2s;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+    transition: 0.2s;
+}
+
+.base_btn {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 20px 40px;
+    white-space: nowrap;
+}
+
+.base_title_text {
+    font-size: 36px;
+    line-height: 43px;
+}
+
+@media (max-width: 1240px) {
+    .container {
+        max-width: 1000px;
+    }
+
+    .base_title_text {
+        font-size: 32px;
+        line-height: 38px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .container {
+        max-width: 800px;
+    }
+
+    .base_btn {
+        font-size: 14px;
+        line-height: 14px;
+        padding: 15px 40px;
+    }
+
+    .base_title_text {
+        font-size: 28px;
+        line-height: 32px;
+    }
+}
+
+@media (max-width: 840px) {
+    .container {
+        max-width: 600px;
+    }
+
+    .base_title_text {
+        font-size: 24px;
+        line-height: 30px;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        max-width: 425px;
+    }
+}
+
+@media (max-width: 445px) {
+    .container {
+        max-width: 375px;
+    }
+
+    .base_btn {
+        font-size: 16px;
+        line-height: 19px;
+        padding: 13px 10px;
+    }
+}
+
+@media (max-width: 395px) {
+    .container {
+        max-width: 320px;
+    }
+}
