@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Car
+from .models import Car, CarImage 
 from .models import (
     Service, Case, ProductCategory, ProductSubcategory,
-    Product, ProductImage, ServiceRequest, ProductRequest, Feedback, GalleryItem
+    Product, ProductImage, ServiceRequest, ProductRequest, Feedback, GalleryItem, 
 )
 
 class ProductImageInline(admin.TabularInline):
@@ -100,11 +100,19 @@ class GalleryItemAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at',)
 
 
+class CarImageInline(admin.TabularInline):
+    model = CarImage
+    extra = 6
+    max_num = 6
+
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
     list_display = ('title', 'price', 'type')
-    search_fields = ('name',)
-   
+    search_fields = ('title',)  # поправил 'name' на 'title', чтобы не было пустого поиска
+    inlines = [CarImageInline]
+
     def car_type_display(self, obj):
         return obj.type
     car_type_display.short_description = "Тип автомобиля"
+
+

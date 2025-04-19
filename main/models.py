@@ -174,9 +174,16 @@ class Car(models.Model):
     capacity = models.CharField(max_length=100)
     steering = models.CharField(max_length=100)
     gasoline = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='cars/')
-    created_at = models.DateTimeField(auto_now_add=True)
-
+    image = models.ImageField(upload_to='cars/', blank=True, null=True)
     
+
     def __str__(self):
-         return self.title
+        return self.title
+    
+
+class CarImage(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='cars/')
+
+    def __str__(self):
+        return f"Изображение для {self.car.title}"

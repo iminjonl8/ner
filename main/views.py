@@ -17,6 +17,45 @@ from .serializers import (
     ServiceRequestSerializer, ProductRequestSerializer, FeedbackSerializer
 )
 
+# import requests
+# from django.shortcuts import render
+# from django.http import HttpResponse
+
+# BOT_TOKEN = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ'
+# CHAT_ID = '6349387390'  # можно взять с getUpdates
+
+# @csrf_exempt
+# def send_form(request):
+#     if request.method == "POST":
+#         name = request.POST.get('name')
+#         phone = request.POST.get('phone')
+#         city = request.POST.get('city', 'не указан')
+#         comment = request.POST.get('comment', '—')
+
+#         message = f"""📝 <b>Новая заявка с сайта</b>\n
+# 👤 Имя: {name}
+# 📞 Телефон: {phone}
+# 🏙️ Город: {city}
+# 💬 Комментарий: {comment}
+#         """
+
+#         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+#         payload = {
+#             "chat_id": CHAT_ID,
+#             "text": message,
+#             "parse_mode": "HTML"
+#         }
+
+#         response = requests.post(url, json=payload)
+
+#         if response.status_code == 200:
+#             return HttpResponse("Заявка отправлена!")
+#         else:
+#             return HttpResponse("Ошибка Telegram", status=500)
+
+#     return HttpResponse("Method not allowed", status=405)
+
+
 # Пагинация
 class DefaultPagination(PageNumberPagination):
     page_size = 10
@@ -95,7 +134,11 @@ def service_view(request):
 
 def car_detail_view(request, pk):
     car = get_object_or_404(Car, pk=pk)
-    return render(request, 'main/car_detail.html', {'car': car})
+    # print(car)
+    # print(car.price)
+    # print(car.type)
+
+    return render(request, 'main/product_detail.html', {'car': car})
 
 
 
@@ -133,6 +176,7 @@ def category_view(request):
         'selected_category': category_id,
     })
 
+
 def product_detail_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
    
@@ -140,6 +184,8 @@ def product_detail_view(request, pk):
     # Похожие из той же подкатегории
     similar_products = Product.objects.filter(subcategory=product.subcategory).exclude(pk=pk)
     similar_count = similar_products.count()
+
+    car = Car.objects.first()
 
     if similar_count >= 4:
         products = similar_products[:4]
@@ -149,8 +195,12 @@ def product_detail_view(request, pk):
         others = Product.objects.exclude(pk__in=similar_products.values_list('pk', flat=True)).exclude(pk=pk)[:extra_needed]
         products = list(similar_products) + list(others)
 
+    print(products)
+    print(product)
+
     return render(request, 'main/product_detail.html', {
         'product': product,
+        'car': car,
         'products': products
     })
 
