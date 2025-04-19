@@ -88,14 +88,16 @@
             <section class="container pt-[32px] pb-[94px] max-800px:pb-[32px]">
                 <h4 class="text-[#242527] font-golos font-[600] text-[36px] leading-[43px] mb-[48px] max-600px:mb-[16px]">Галерея</h4>
                 <div class="grid grid-cols-4 max-1000px:grid-cols-3 max-600px:grid-cols-2 max-425px:grid-cols-1 gap-[16px]">
-                        {% for item in items %}
-                           <div class="h-[214px]">
-                              <img src="{{ item.image.url }}" class="w-full h-full object-cover">
-                           <p class="mt-2 text-center text-[#333] font-golos font-[500] text-[14px]">
-                              {{ item.service.title }}
-                              </p>
-                          </div>
-                              {% endfor %}
+                    {% for item in items %}
+                        <div class="h-[214px]">
+                            <img src="{{ item.image.url }}" alt="{{ item.service.title }}" class="w-full h-full object-cover rounded-[8px]">
+                            <p class="mt-2 text-center text-[#333] font-golos font-[500] text-[14px]">
+                                {{ item.service.title }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+                
 
                     
                     {% comment %} <div class="h-[214px]">
