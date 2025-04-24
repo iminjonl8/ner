@@ -29,22 +29,24 @@
     </head>
 
     <body>
-        <div class="fixed top-0 left-0 w-full h-full bg-[#00000066] z-[9] items-center justify-center hidden sendAnApplication max-600px:px-[18px]">
-            <div class="bg-white w-[542px] p-[32px] sendAnApplicationBody max-425px:p-[24px]">
-                <h6 class="text-[#000000] font-golos font-[500] text-[28px] leading-[24px] max-425px:text-[24px] mb-[24px]">Оставьте заявку</h6>
+        <div class="fixed top-0 left-0 w-full h-full bg-[#00000066] z-[9] items-center justify-center hidden sendAnApplication">
+            <div class="bg-white w-[542px] p-[32px] sendAnApplicationBody">
+                <h6 class="text-[#000000] text-[28px] mb-[24px]">Оставьте заявку</h6>
                 <div class="flex flex-col gap-[8px]">
-                    <input type="text" placeholder="Имя" class="font-golos font-[400] text-[17px] leading-[22px] placeholder:text-[#3C3C4399] outline-none p-[14px] border border-[#78788033]">
-                    <input type="text" placeholder="Телефон" class="font-golos font-[400] text-[17px] leading-[22px] placeholder:text-[#3C3C4399] outline-none p-[14px] border border-[#78788033]">
-                    <input type="text" placeholder="Город" class="font-golos font-[400] text-[17px] leading-[22px] placeholder:text-[#3C3C4399] outline-none p-[14px] border border-[#78788033]">
-                    <textarea placeholder="Комментарий" class="font-golos font-[400] text-[17px] leading-[22px] placeholder:text-[#3C3C4399] outline-none p-[14px] border border-[#78788033] h-[93px]"></textarea>
+                    <input id="name" type="text" placeholder="Имя" class="p-[14px] border" />
+                    <input id="phone" type="text" placeholder="Телефон" class="p-[14px] border" />
+                    <input id="city" type="text" placeholder="Город" class="p-[14px] border" />
+                    <textarea id="comment" placeholder="Комментарий" class="p-[14px] border h-[93px]"></textarea>
                 </div>
-                <button class="text-white font-golos font-[600] text-[16px] leading-[19px] py-[15px] bg-[#1572D3] w-full mt-[20px]">Отправить через WhatsApp</button>
+                <button id="submitBtn" class="text-white bg-[#1572D3] w-full mt-[20px] py-[15px]">Отправить</button>
             </div>
         </div>
-        <div>
+
+        
+
             <div class="relative overflow-hidden">
                 <header class="container flex items-center py-[16px]">
-                    <a href="#">
+                    <a href="{% url 'index' %}">
                         <img src="{% static 'main/img/logo.png' %}" class="min-w-[207px] w-[207px] max-1000px:min-w-[170px] max-1000px:w-[170px] h-[41px] object-cover">
                     </a>
                     <button class="hidden max-800px:!block max-800px:ml-auto" id="burgerOpen">
@@ -159,7 +161,7 @@
                             <div>
                                 <p class="text-[#1A202C] text-[28px] font-bold">${{ car.price|floatformat:"0" }}</p>
                             </div>
-                            <button id="buyNowBtn" class="text-white py-[16px] px-[32px] bg-[#3563E9] rounded-lg hover:bg-blue-700 transition">
+                            <button id="submitBtn" class="text-white py-[16px] px-[32px] bg-[#3563E9] rounded-lg hover:bg-blue-700 transition">
                                 Купить
                             </button>
                         </div>
@@ -294,7 +296,7 @@
                                 <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
                                 <div class="mb-[20px] flex items-center justify-between">
                                     <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Цена</p>
-                                    <span class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">${{ product_item.price }}</span>
+                                    <span class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">{{ product_item.price }} сом</span>
                                 </div>
                                 <a href="{% url 'category'  %}" class="block text-center font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Подробнее</a>
                             </div>

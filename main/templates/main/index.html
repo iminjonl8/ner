@@ -33,7 +33,7 @@
         <div class="relative overflow-hidden">
             <div class="bg-[linear-gradient(219.84deg,_#474747_4.14%,_#222222_44.22%)] max-425px:bg-[#292929] max-425px:bg-linear-0 rotate-y-[180deg] w-full h-full absolute top-0 left-0 z-[-1]"></div>
             <header class="container flex items-center py-[16px]">
-                <a href="#">
+                <a href="{% url 'index' %}">
                     <img src="{% static 'main/img/logo.png' %}" class="min-w-[207px] w-[207px] max-1000px:min-w-[170px] max-1000px:w-[170px] h-[41px] object-cover">
                 </a>
                 <button class="hidden max-800px:!block max-800px:ml-auto" id="burgerOpen">
@@ -110,7 +110,7 @@
             <section class="container flex items-center gap-[33px] pt-[64px] pb-[94px] max-800px:py-[32px] max-800px:flex-col max-800px:gap-[16px] max-425px:gap-[24px]">
                 <div>
                     <h4 class="text-[#242527] font-golos font-[600] mb-[32px] max-1000px:mb-[20px] max-800px:mb-[10px] base_title_text">GPS-трекеры и электронная пломба для надежного перевоза</h4>
-                    <p class="text-[#61656E] font-golos font-[400] text-[16px] leading-[26px] mb-[20px] max-800px:mb-[10px] max-800px:text-[14px] max-800px:leading-[22px] max-425px:text-[16px]">Perumnas cluster housing is the right choice for those of you who are looking for comfortable, safe and affordable housing. With the cluster concept, you can enjoy the privacy and comfort of living in a beautiful and clean environment. Apart from that, you can also enjoy the various facilities provided, such as playgrounds, sports fields, shopping centers, schools, and others.</p>
+                    <p class="text-[#61656E] font-golos font-[400] text-[16px] leading-[26px] mb-[20px] max-800px:mb-[10px] max-800px:text-[14px] max-800px:leading-[22px] max-425px:text-[16px]">Жилье кластера Perumnas — это правильный выбор для тех из вас, кто ищет комфортное, безопасное и доступное жилье. С концепцией кластера вы можете наслаждаться уединением и комфортом проживания в красивой и чистой среде. Кроме того, вы также можете пользоваться различными предоставленными удобствами, такими как игровые площадки, спортивные площадки, торговые центры, школы и другие..</p>
                     <div class="flex items-center gap-[7px]">
                         <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
                             <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
@@ -137,7 +137,7 @@
             <section class="container">
                 <div class="flex items-center justify-between mb-[32px] max-800px:mb-[16px] max-425px:mb-[24px]">
                     <h4 class="text-[#242527] font-golos font-[600] base_title_text">Что мы вам предлагаем</h4>
-                    <a href="{% url 'gallery' %}" class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
+                    <a href="{% url 'services'  %}" class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
                 </div>
                 <div class="grid grid-cols-2 max-600px:grid-cols-1 gap-[16px]">
                     <div class="bg-[#F4F6FA] relative p-[25px] pb-[127px] max-600px:pb-[150px] max-425px:p-[17px] max-425px:pb-[140px]">
@@ -148,7 +148,7 @@
                     <div class="bg-[#F4F6FA] relative p-[25px] pb-[127px] max-600px:pb-[150px] max-425px:p-[17px] max-425px:pb-[140px]">
                         <p class="text-[#333333] font-inter font-[700] text-[24px] max-800px:text-[20px] leading-[24px] max-800px:leading-[22px] max-w-[366px] max-800px:max-w-full mb-[20px] max-800px:mb-[10px]">Автомойка грузовых и легковых авто</p>
                         <p class="text-[#333333CC] font-golos font-[400] text-[16px] max-800px:text-[14px] leading-[19px] max-800px:max-w-full max-w-[284px] max-1000px:max-w-[250px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.</p>
-                        <img src="{% static 'main/img/custom_3.jpeg' %} " class="w-[225px] h-[215px] max-1200px:w-[200px] max-1200px:h-[150px] mix-blend-multiply object-cover absolute bottom-0 right-[22px] rotate-y-[180deg]">
+                        <img src="{% static 'main/img/custom_3.png' %} " class="w-[225px] h-[215px] max-1200px:w-[200px] max-1200px:h-[150px] mix-blend-multiply object-cover absolute bottom-0 right-[22px] rotate-y-[180deg]">
                     </div>
                     <div class="bg-[#F4F6FA] relative p-[25px] pb-[127px] max-600px:pb-[150px] max-425px:p-[17px] max-425px:pb-[140px]">
                         <p class="text-[#333333] font-inter font-[700] text-[24px] max-800px:text-[20px] leading-[24px] max-800px:leading-[22px] max-w-[366px] max-800px:max-w-full mb-[20px] max-800px:mb-[10px]">Магазин аксессуаров</p>
@@ -165,7 +165,7 @@
             <section class="container py-[100px] max-800px:py-[32px]">
                 <div class="flex items-center justify-between mb-[32px] max-800px:mb-[16px] max-425px:mb-[24px]">
                     <h4 class="text-[#242527] font-golos font-[600] base_title_text">Интернет магазин</h4>
-                    <a href="{% url 'gallery' %}"class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
+                    <a href="{% url 'category' %}"class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
                 </div>
                 <div class="swiper mySwiperMarket !hidden max-600px:!block">
                     <div class="swiper-wrapper">
@@ -204,8 +204,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  
+                  </div> 
                  
                   <div class="grid grid-cols-4 gap-[24px] max-1000px:grid-cols-2 max-600px:grid-cols-1">
                     {% for product in products %}
@@ -219,7 +218,7 @@
                             <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
                             <div class="mb-[20px] flex items-center justify-between">
                                 <p class="text-[#595959] font-golos font-[400] text-[14px] leading-[13px]">Цена</p>
-                                <span class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">${{ product.price }}</span>
+                                <span class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">{{ product.price }} сом</span>
                             </div>
                             <a href="{% url 'product_detail' product.pk %}" class="block text-center font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</a>
                         </div>
@@ -278,7 +277,7 @@
             <section class="container">
                 <div class="flex items-center justify-between mb-[32px] max-800px:mb-[16px] max-425px:mb-[24px] max-425px:gap-[50px] max-375px:gap-[0]">
                     <h4 class="text-[#242527] font-golos font-[600] base_title_text">Наши завершенные работы</h4>
-                    <a href="{% url 'services' %}" class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
+                    <a href="{% url 'gallery' %}" class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</a>
                 </div>
                 <div class="flex flex-col gap-[16px] max-800px:gap-[8px]">
                     <div class="grid grid-rows-[230px_230px] max-1000px:grid-rows-[150px_150px] max-800px:grid-rows-[100px_100px] grid-cols-[1fr_515px] max-1000px:grid-cols-[1fr_250px] gap-[16px] max-800px:gap-[8px] max-600px:grid-cols-2 max-600px:grid-rows-[229px_170px]">
