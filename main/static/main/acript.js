@@ -11,19 +11,24 @@ if(!!showBtn) {
 // ---------------------------------------------------------------
 
 const sendAnApplication = document.querySelector(".sendAnApplication")
-const buyBtn = document.querySelector(".buyBtn")
+const buyBtn = document.querySelectorAll(".buyBtn")
 
-if(!!buyBtn && !!sendAnApplication) {
-    buyBtn.addEventListener("click", () => {
-        sendAnApplication.classList.add("!flex")
-    })
-    
-    sendAnApplication.addEventListener("click", (e) => {
-        if (!e.target.closest(".sendAnApplicationBody")) {
-            sendAnApplication.classList.remove("!flex")
-        }
-    })
-}
+console.log(buyBtn);
+
+
+buyBtn.forEach((item, index) => {
+    if(!!item || !!sendAnApplication) {
+        item.addEventListener("click", () => {
+            sendAnApplication.classList.add("!flex")
+        })
+        
+        sendAnApplication.addEventListener("click", (e) => {
+            if (!e.target.closest(".sendAnApplicationBody")) {
+                sendAnApplication.classList.remove("!flex")
+            }
+        })
+    }
+})
 
 // ---------------------------------------------------------------
 

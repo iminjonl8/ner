@@ -28,6 +28,19 @@
 </head>
 
 <body>
+    <div class="fixed top-0 left-0 w-full h-full bg-[#00000066] z-[9] items-center justify-center hidden sendAnApplication">
+        <div class="bg-white w-[542px] p-[32px] sendAnApplicationBody">
+            <h6 class="text-[#000000] text-[28px] mb-[24px]">Оставьте заявку</h6>
+            <div class="flex flex-col gap-[8px]">
+                <input id="name" type="text" placeholder="Имя" class="p-[14px] border" />
+                <input id="phone" type="text" placeholder="Телефон" class="p-[14px] border" />
+                <input id="city" type="text" placeholder="Город" class="p-[14px] border" />
+                <textarea id="comment" placeholder="Комментарий" class="p-[14px] border h-[93px]"></textarea>
+            </div>
+            <button id="submitBtn" class="text-white bg-[#1572D3] w-full mt-[20px] py-[15px]">Отправить</button>
+        </div>
+    </div>
+
     <div>
         <div class="relative overflow-hidden">
             <header class="container flex items-center py-[16px]">
@@ -308,9 +321,9 @@
                                     {{ product.price }} cом
                                 </span>
                             </div>
-                            <a href="{% url 'product_detail' product.pk %}" class="block text-center font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">
+                            <button class="block text-center font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px] buyBtn">
                                 Купить
-                            </a>
+                            </button>
                         </div>
                     </div>
                     {% endfor %}
