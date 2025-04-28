@@ -37,6 +37,9 @@
                     <input id="phone" type="text" placeholder="Телефон" class="p-[14px] border" />
                     <input id="city" type="text" placeholder="Город" class="p-[14px] border" />
                     <textarea id="comment" placeholder="Комментарий" class="p-[14px] border h-[93px]"></textarea>
+                
+                   
+                    <input id="product" type="hidden" value="{{ car.title }}">
                 </div>
                 <button id="submitBtn" class="text-white bg-[#1572D3] w-full mt-[20px] py-[15px]">Отправить</button>
             </div>
@@ -159,7 +162,7 @@
                 
                         <div class="mt-[40px] flex items-center justify-between">
                             <div>
-                                <p class="text-[#1A202C] text-[28px] font-bold">${{ car.price|floatformat:"0" }}</p>
+                                <p class="text-[#1A202C] text-[28px] font-bold">{{ car.price|floatformat:"0" }} сом</p>
                             </div>
                             <button id="submitBtn" class="text-white py-[16px] px-[32px] bg-[#3563E9] rounded-lg hover:bg-blue-700 transition buyBtn">
                                 Купить
@@ -388,7 +391,7 @@
                     <div>
                         <div class="flex justify-between max-600px:flex-wrap max-600px:gap-[24px]">
                             <div>
-                                <a href="https://t.me/+998998666555" class="text-white font-golos font-[600] text-[24px] leading-[29px]">Нержавейка</a>
+                                <a href="https://t.me/+996998666555" class="text-white font-golos font-[600] text-[24px] leading-[29px]">Нержавейка</a>
                                 <p class="text-white font-golos font-[400] text-[16px] leading-[28px] my-[24px] max-w-[547px] max-1000px:max-w-[450px]">Интернет-магазин запчастей из нержавеющей стали и сервис по оказанию профильных услуг. Более 5 лет опыта в надежных решениях для вашего бизнеса и дома.</p>
                                 <div class="flex items-center gap-[7px]">
                                     <a href="" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
@@ -463,9 +466,65 @@
                 slidesPerView: 1.2,
             })
 
+
+
+
+
+            
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const city = document.getElementById('city').value;
+                const comment = document.getElementById('comment').value;
+                const product = document.getElementById('product').value; // yangi qator
+            
+                const message = `
+            📝 <b>Новая заявка с сайта</b>
+            📦  Тавар: ${product}
+            👤 Имя: ${name}
+            📞 Телефон: ${phone}
+            🏙️ Город: ${city}
+            💬 Комментарий: ${comment}
+                `;
+            
+                const botToken = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ';
+                const chatId = '6349387390';
+                const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            
+                const payload = {
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: "HTML"
+                };
+            
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Telegram response:', data);
+                    
+            
+                    document.getElementById('name').value = '';
+                    document.getElementById('phone').value = '';
+                    document.getElementById('city').value = '';
+                    document.getElementById('comment').value = '';
+                })
+                .catch(error => {
+                    console.error('Ошибка при отправке заявки:', error);
+                    alert('Ошибка при отправке заявки. Попробуйте снова.');
+                });
+            });
+            
+            
             
         </script>
 
+        
        
           
     </body>

@@ -32,6 +32,7 @@
         <div class="bg-white w-[542px] p-[32px] sendAnApplicationBody">
             <h6 class="text-[#000000] text-[28px] mb-[24px]">Оставьте заявку</h6>
             <div class="flex flex-col gap-[8px]">
+                <input id="product" type="hidden" /> <!-- Yangi qator -->
                 <input id="name" type="text" placeholder="Имя" class="p-[14px] border" />
                 <input id="phone" type="text" placeholder="Телефон" class="p-[14px] border" />
                 <input id="city" type="text" placeholder="Город" class="p-[14px] border" />
@@ -40,7 +41,7 @@
             <button id="submitBtn" class="text-white bg-[#1572D3] w-full mt-[20px] py-[15px]">Отправить</button>
         </div>
     </div>
-
+    
     <div>
         <div class="relative overflow-hidden">
             <header class="container flex items-center py-[16px]">
@@ -124,6 +125,9 @@
                             </div>
                         </div>
                         {% endfor %}
+
+
+                        
                     {% comment %} </div> {% endcomment %}
                     
                             {% comment %} <button class="flex items-center justify-between py-[6px] w-full showBtn">
@@ -254,7 +258,7 @@
                             {% endif %}
                             
                             <button type="submit" class="hidden">Применить фильтры</button>
-                          
+                        
                             
                                 <p class="text-[#98A0B4] font-nato font-[400] text-[14px] leading-[17px] mb-[12px]">Категории</p>
                                 <select name="category"
@@ -321,9 +325,12 @@
                                     {{ product.price }} cом
                                 </span>
                             </div>
-                            <button class="block text-center font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px] buyBtn">
-                                Купить
-                            </button>
+                            <button 
+                            class="block text-center font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px] buyBtn"
+                            data-product="{{ product.title }}">
+                            Купить
+                        </button>
+
                         </div>
                     </div>
                     {% endfor %}
@@ -411,7 +418,7 @@
                             <a href="#" class="text-white font-golos font-[600] text-[24px] leading-[29px]">Нержавейка</a>
                             <p class="text-white font-golos font-[400] text-[16px] leading-[28px] my-[24px] max-w-[547px] max-1000px:max-w-[450px]">Интернет-магазин запчастей из нержавеющей стали и сервис по оказанию профильных услуг. Более 5 лет опыта в надежных решениях для вашего бизнеса и дома.</p>
                             <div class="flex items-center gap-[7px]">
-                                <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                                <a href="https://t.me/+996998666555" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
                                     <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0ZM14.442 6C14.061 6.007 13.476 6.207 10.663 7.362C8.68848 8.18629 6.71944 9.02365 4.756 9.874C4.276 10.0627 4.025 10.247 4.003 10.427C3.959 10.773 4.463 10.88 5.097 11.084C5.614 11.25 6.31 11.444 6.672 11.452C7 11.4587 7.366 11.3253 7.77 11.052C10.5293 9.212 11.9537 8.28233 12.043 8.263C12.106 8.249 12.193 8.231 12.253 8.283C12.312 8.335 12.306 8.433 12.299 8.46C12.249 8.671 9.658 10.998 9.509 11.151L9.437 11.223C8.887 11.766 8.332 12.121 9.29 12.744C10.156 13.307 10.66 13.666 11.55 14.244C12.12 14.612 12.567 15.049 13.155 14.996C13.426 14.971 13.705 14.72 13.848 13.97C14.183 12.2 14.843 8.362 14.995 6.78C15.0046 6.64878 14.9989 6.5169 14.978 6.387C14.9657 6.28209 14.9142 6.18569 14.834 6.117C14.713 6.019 14.525 5.999 14.442 6Z" fill="white" />
@@ -423,7 +430,7 @@
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0003 1.6665C5.39783 1.6665 1.66699 5.39734 1.66699 9.99984C1.66699 11.5748 2.10449 13.0498 2.86533 14.3065L2.12199 16.8332C2.07931 16.9782 2.0765 17.1321 2.11386 17.2787C2.15122 17.4252 2.22737 17.5589 2.33429 17.6659C2.44122 17.7728 2.57498 17.8489 2.72151 17.8863C2.86804 17.9237 3.02192 17.9209 3.16699 17.8782L5.69366 17.1348C6.99261 17.9206 8.48219 18.3351 10.0003 18.3332C14.6028 18.3332 18.3337 14.6023 18.3337 9.99984C18.3337 5.39734 14.6028 1.6665 10.0003 1.6665ZM8.11533 11.8857C9.80116 13.5707 11.4103 13.7932 11.9787 13.814C12.8428 13.8457 13.6845 13.1857 14.012 12.4198C14.053 12.3245 14.0678 12.2199 14.0549 12.117C14.042 12.014 14.0019 11.9163 13.9387 11.834C13.482 11.2507 12.8645 10.8315 12.2612 10.4148C12.1353 10.3275 11.9804 10.2925 11.8292 10.317C11.6779 10.3416 11.5421 10.4238 11.4503 10.5465L10.9503 11.309C10.9239 11.3498 10.8829 11.3791 10.8357 11.3909C10.7886 11.4026 10.7387 11.396 10.6962 11.3723C10.357 11.1782 9.86283 10.8482 9.50783 10.4932C9.15283 10.1382 8.84283 9.6665 8.66866 9.349C8.64759 9.30855 8.64164 9.26191 8.65187 9.21746C8.6621 9.17301 8.68785 9.13367 8.72449 9.1065L9.49449 8.53484C9.6047 8.4395 9.67585 8.30684 9.6943 8.1623C9.71275 8.01775 9.67721 7.87147 9.59449 7.7515C9.22116 7.20484 8.78616 6.50984 8.15533 6.049C8.07374 5.99039 7.9784 5.95383 7.87854 5.94288C7.77867 5.93193 7.67768 5.94696 7.58533 5.9865C6.81866 6.31484 6.15533 7.1565 6.18699 8.02234C6.20783 8.59067 6.43033 10.1998 8.11533 11.8857Z" fill="white" />
                                     </svg>
                                 </a>
-                                <a href="#" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                                <a href="https://www.instagram.com/nerjaveyka_borboru" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
                                     <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M26 13H13.9688C13.4375 13 13 13.4688 13 14.0312V26C13 26.5625 13.4375 27 13.9688 27H26C26.5312 27 27 26.5625 27 26V14.0312C27 13.4688 26.5312 13 26 13ZM17.2188 25H15.1562V18.3438H17.2188V25ZM16.1875 17.4062C15.5 17.4062 14.9688 16.875 14.9688 16.2188C14.9688 15.5625 15.5 15 16.1875 15C16.8438 15 17.375 15.5625 17.375 16.2188C17.375 16.875 16.8438 17.4062 16.1875 17.4062ZM25 25H22.9062V21.75C22.9062 21 22.9062 20 21.8438 20C20.75 20 20.5938 20.8438 20.5938 21.7188V25H18.5312V18.3438H20.5V19.25H20.5312C20.8125 18.7188 21.5 18.1562 22.5 18.1562C24.5938 18.1562 25 19.5625 25 21.3438V25Z" fill="white" />
@@ -459,55 +466,131 @@
         </footer>
     </div>
 
-    <script src="{% static 'main/acript.js' %}"></script> 
-    <!-- 2) В самый низ шаблона (перед </body>) вставьте этот скрипт -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const minEl = document.getElementById('min-price');
-          const maxEl = document.getElementById('max-price');
+        (() => {
+          const qs = selector => document.querySelector(selector);
+          const qsa = selector => document.querySelectorAll(selector);
         
-          // Если у тебя есть ещё другие фильтры (категория, чекбоксы и т.п.), 
-          // добавь к ним аналогично id и здесь их объяви:
-          const categoryEl = document.getElementById('category-select');
-          const newEl      = document.getElementById('filter-new');
-          const hitEl      = document.getElementById('filter-hit');
-          const saleEl     = document.getElementById('filter-sale');
+          // Открыть окно заявки
+          function openApplicationForm(productTitle) {
+            const formOverlay = qs('.sendAnApplication');
+            const productInput = qs('#product');
         
-          // Следим за всеми контролами
-          [categoryEl, minEl, maxEl, newEl, hitEl, saleEl].forEach(el => {
-            if (el) el.addEventListener('change', updateFilters);
-          });
+            if (formOverlay && productInput) {
+              productInput.value = productTitle;
+              formOverlay.classList.remove('hidden');
+              formOverlay.classList.add('flex');
+            }
+          }
         
-          function updateFilters() {
-            const params = new URLSearchParams(window.location.search);
+          // Закрыть окно заявки (если захочешь добавить кнопку закрытия)
+          function closeApplicationForm() {
+            const formOverlay = qs('.sendAnApplication');
+            if (formOverlay) {
+              formOverlay.classList.remove('flex');
+              formOverlay.classList.add('hidden');
+            }
+          }
         
-            // Мин. цена
-            const min = minEl.value.trim();
-            if (min) params.set('min', min);
-            else params.delete('min');
+          // Отправка данных в Telegram
+          async function sendApplication() {
+            const name = qs('#name').value.trim();
+            const phone = qs('#phone').value.trim();
+            const city = qs('#city').value.trim();
+            const comment = qs('#comment').value.trim();
+            const product = qs('#product').value || 'Неизвестный товар';
         
-            // Макс. цена
-            const max = maxEl.value.trim();
-            if (max) params.set('max', max);
-            else params.delete('max');
-        
-            // (Опционально) категория
-            if (categoryEl) {
-              const cat = categoryEl.value;
-              if (cat && cat !== 'all') params.set('category', cat);
-              else params.delete('category');
+            if (!name || !phone || !city) {
+              alert('Пожалуйста, заполните все обязательные поля!');
+              return;
             }
         
-            // (Опционально) чекбоксы
-            if (newEl)  newEl.checked ? params.set('is_new', 'on')     : params.delete('is_new');
-            if (hitEl)  hitEl.checked ? params.set('is_hit', 'on')     : params.delete('is_hit');
-            if (saleEl) saleEl.checked? params.set('is_on_sale', 'on'): params.delete('is_on_sale');
+            const botToken = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ';
+            const chatId = '6349387390';
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
         
-            // Перезагрузка с новыми параметрами
-            window.location.search = params.toString();
+            const message = `
+        📝 <b>Новая заявка с сайта</b>
+        📦 Товар: ${product}
+        👤 Имя: ${name}
+        📞 Телефон: ${phone}
+        🏙️ Город: ${city}
+        💬 Комментарий: ${comment}
+            `;
+        
+            const payload = {
+              chat_id: chatId,
+              text: message,
+              parse_mode: 'HTML'
+            };
+        
+            try {
+              const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              const result = await response.json();
+        
+              if (response.ok && result.ok) {
+                alert('✅ Ваша заявка успешно отправлена!');
+                clearForm();
+                closeApplicationForm();
+              } else {
+                throw new Error(result.description || 'Ошибка при отправке в Telegram');
+              }
+            } catch (error) {
+              console.error('Ошибка отправки:', error);
+              alert('❌ Ошибка при отправке. Попробуйте позже.');
+            }
           }
-        });
+        
+          // Очистка формы после отправки
+          function clearForm() {
+            ['#name', '#phone', '#city', '#comment'].forEach(id => {
+              const el = qs(id);
+              if (el) el.value = '';
+            });
+            qs('#product').value = '';
+          }
+        
+          // Навесить обработчики событий
+          function init() {
+            // Открытие формы по кнопке Купить
+            qsa('.buyBtn').forEach(button => {
+              button.addEventListener('click', () => {
+                const productTitle = button.getAttribute('data-product') || 'Неизвестный товар';
+                openApplicationForm(productTitle);
+              });
+            });
+        
+            // Отправка формы
+            const submitBtn = qs('#submitBtn');
+            if (submitBtn) {
+              submitBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                sendApplication();
+              });
+            }
+        
+            // (Опционально) Закрытие формы по клику вне окна
+            const formOverlay = qs('.sendAnApplication');
+            if (formOverlay) {
+              formOverlay.addEventListener('click', (e) => {
+                if (e.target === formOverlay) {
+                  closeApplicationForm();
+                }
+              });
+            }
+          }
+        
+          document.addEventListener('DOMContentLoaded', init);
+        })();
         </script>
+        
+        
+        
+    
         
        
 </body>

@@ -8,7 +8,10 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from datetime import timedelta
-
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json, requests
+from django.conf import settings
 from .models import (
     Question, Car, Category,
     Case, Service, Product, ServiceRequest, ProductRequest,
@@ -28,38 +31,46 @@ CHAT_ID = '6349387390'
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
 
-@csrf_protect
+@csrf_exempt  # или @csrf_protect + ставишь CSRF в заголовке X-CSRFToken
 def send_form(request):
-    if request.method == "POST":
-        name = request.POST.get('name', '—')
-        phone = request.POST.get('phone', '—')
-        city = request.POST.get('city', 'не указан')
-        comment = request.POST.get('comment', '—')
+    if request.method != 'POST':
+        return JsonResponse({'ok': False, 'error': 'Только POST'}, status=405)
 
-        message = f"""📝 <b>Новая заявка с сайта</b>
-👤 Имя: {name}
-📞 Телефон: {phone}
-🏙️ Город: {city}
-💬 Комментарий: {comment}"""
+    try:
+        # 1) Парсим JSON
+        data = json.loads(request.body.decode('utf-8'))
+        name    = data.get('name', '—')
+        phone   = data.get('phone', '—')
+        city    = data.get('city', 'не указан')
+        comment = data.get('comment', '—')
+        product = data.get('product', 'Без товара')
 
-        url = f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": settings.TELEGRAM_CHAT_ID,
-            "text": message,
-            "parse_mode": "HTML"
-        }
+        # 2) Формируем сообщение
+        message = (
+            f"📝 <b>Новая заявка с сайта</b>\n"
+            f"📦 <b>Товар:</b> {product}\n"
+            f"👤 <b>Имя:</b> {name}\n"
+            f"📞 <b>Телефон:</b> {phone}\n"
+            f"🏙️ <b>Город:</b> {city}\n"
+            f"💬 <b>Комментарий:</b> {comment}"
+        )
 
-        try:
-            response = requests.post(url, json=payload)
-            print("Статус код Telegram:", response.status_code)  # <-- Логирование
-            print("Ответ Telegram:", response.text)
-            response.raise_for_status()  
-            return HttpResponse("Заявка отправлена!")
-        except Exception as e:
-            return HttpResponse(f"Ошибка: {str(e)}", status=500)
+        # 3) Шлём в Telegram
+        resp = requests.post(
+            f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_TOKEN}/sendMessage",
+            json={
+                'chat_id':   settings.TELEGRAM_CHAT_ID,
+                'text':      message,
+                'parse_mode': 'HTML'
+            },
+            timeout=5
+        )
+        resp.raise_for_status()
 
-    return HttpResponse("Method not allowed", status=405)
+        return JsonResponse({'ok': True})
 
+    except Exception as e:
+        return JsonResponse({'ok': False, 'error': str(e)}, status=500)
 # Пагинация
 class DefaultPagination(PageNumberPagination):
     page_size = 10
@@ -125,10 +136,12 @@ def index_view(request):
     products = Product.objects.all().order_by('-created_at')[:4]
     services = Service.objects.all().order_by('price')[:4]
     cases = Case.objects.all().order_by('-created_at')[:6]
+    gallery_items = GalleryItem.objects.all().order_by('-created_at')[:4]
     context = {
         'products': products,
         'services': services,
         'cases': cases,
+        'items': gallery_items,
     }
     return render(request, 'main/index.html', context)
 

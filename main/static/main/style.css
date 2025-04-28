@@ -148,3 +148,9 @@ select {
         max-width: 320px;
     }
 }
+
+
+.rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.2s ease-in-out;
+}
