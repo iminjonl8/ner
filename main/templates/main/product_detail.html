@@ -371,9 +371,9 @@
                                     Оставьте свои контактные данные - мы свяжемся с вами в ближайшее время.
                                 </p>
                                 <div class="mt-[70px] flex flex-col gap-[20px] max-800px:gap-[12px] max-800px:mt-[40px]">
-                                    <input type="text" name="name" id="name" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
-                                    <input type="tel" name="phone" id="phone" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
-                                    <button type="button" id="submitBtn" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
+                                    <input type="text" name="name" id="namen" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                    <input type="tel" name="phone" id="phonen" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                    <button type="button" id="submitBtnn" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
                                         Отправить
                                     </button>
                                 </div>
@@ -432,6 +432,35 @@
                         .catch(error => {
                             console.error('Ошибка при отправке заявки:', error);
                             alert('Ошибка при отправке заявки. Попробуйте снова.');
+                        });
+                    });
+
+
+
+                    document.getElementById('submitBtnn').addEventListener('click', function() {
+                        const namen = document.getElementById('namen').value;
+                        const phonen = document.getElementById('phonen').value;
+                
+                
+                        const message = `📝 <b>Новая заявка с сайта</b>\n👤 Имя: ${namen}\n📞 Телефон: ${phonen}`;
+                        const botToken = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ';
+                        const chatId = '6349387390';
+                
+                        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                chat_id: chatId,
+                                text: message,
+                                parse_mode: 'HTML'
+                            })
+                        })
+                        .then(res => res.json())
+                        .catch(err => {
+                            alert("Ошибка соединения");
+                            console.error(err);
                         });
                     });
                 </script>
