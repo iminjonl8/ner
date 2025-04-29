@@ -170,30 +170,20 @@ def gallery_view(request):
 def category_view(request):
     query = Q()
     now = timezone.now()
-    # Автоматическое снятие статуса "Новинка" через 30 дней
-    month_ago = now - timedelta(days=30)
-    Product.objects.filter(
-        is_new=True,
-        created_at__lt=month_ago
-    ).update(is_new=False)
 
-    # Фильтр по категории
-    category_id = request.GET.get('category')
-    if category_id and category_id != 'all':
-        query &= Q(subcategory__category__id=category_id)
+    # Subkategoriya bo‘yicha filter
+    subcategory_id = request.GET.get('subcategory')
+    if subcategory_id:
+        query &= Q(subcategory__id=subcategory_id)
 
-    # Фильтр по цене
+    # (Avvalgi filtrlar qoladi)
     min_price = request.GET.get('min')
     max_price = request.GET.get('max')
-    try:
-        if min_price:
-            query &= Q(price__gte=float(min_price))
-        if max_price:
-            query &= Q(price__lte=float(max_price))
-    except (TypeError, ValueError):
-        pass
+    if min_price:
+        query &= Q(price__gte=min_price)
+    if max_price:
+        query &= Q(price__lte=max_price)
 
-    # Приоритетная фильтрация
     if request.GET.get('is_new') == 'on':
         query &= Q(is_new=True)
     if request.GET.get('is_hit') == 'on':
@@ -202,15 +192,14 @@ def category_view(request):
         query &= Q(is_on_sale=True)
 
     products = Product.objects.filter(query)
-    categories = ProductCategory.objects.all()
+    categories = ProductCategory.objects.prefetch_related('subcategories')
 
-    context = {
+    return render(request, 'main/category.html', {
         'products': products,
         'categories': categories,
-        'selected_category': category_id,
-        'request': request,
-    }
-    return render(request, 'main/category.html', context)
+        'selected_subcategory': subcategory_id,
+    })
+
 
 
 def product_detail_view(request, pk):

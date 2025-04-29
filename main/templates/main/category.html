@@ -56,7 +56,7 @@
                 </button>
                 <div class="flex items-center justify-between w-full max-800px:fixed max-800px:top-0 max-800px:left-0 max-800px:w-full max-800px:h-full max-800px:flex-col max-800px:justify-start z-[5] max-800px:bg-[#292929] max-800px:items-start max-800px:translate-x-[-100%] duration-200" id="burgerBody">
                     <div class="hidden max-800px:block bg-white w-full py-[20px] px-[24px]">
-                        <a href="#" class="flex justify-center">
+                        <a href="{% url 'index' %}" class="flex justify-center">
                             <img src="{% static 'main/img/logo.png' %}" class="w-[137px] h-[27px] object-cover">
                         </a>
                         <button class="mt-[16px]" id="burgerClose">
@@ -101,32 +101,30 @@
         <main class="bg-[#F6F7F9]">
           
   <section class="container grid grid-cols-[295px_1fr] max-1000px:grid-cols-[270px_1fr] max-800px:grid-cols-1 gap-[24px] py-[65px] max-1000px:py-[32px]">
-                <div class="bg-white px-[16px] py-[20px] h-max max-800px:hidden">
-                    <h4 class="text-[#4B4B4B] font-golos font-[600] text-[20px] leading-[24px] mb-[20px]">Категории</h4>
-                    <div class="mb-[24px]">
-                        {% for category in categories %}
-                        <div>
-                            <button class="flex items-center justify-between py-[6px] w-full showBtn">
-                                <span class="text-[#000000] font-golos font-[400] text-[14px] leading-[20px]">
-                                    {{ category.name }} ({{ category.subcategories.count }})
-                                </span>
-                                <div>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4.47108 5.52858C4.21073 5.26823 3.78862 5.26823 3.52827 5.52858C3.26792 5.78892 3.26792 6.21103 3.52827 6.47138L7.52827 10.4714C7.78862 10.7317 8.21073 10.7317 8.47108 10.4714L12.4711 6.47138C12.7314 6.21103 12.7314 5.78892 12.4711 5.52858C12.2107 5.26823 11.7886 5.26823 11.5283 5.52858L7.99967 9.05717L4.47108 5.52858Z" fill="#C0C0C0" />
-                                    </svg>
-                                </div>
-                            </button>
-                            <div class="flex-col gap-[8px] hidden border-l-[2px] border-l-[#5354550D] pl-[8px]">
-                                {% for sub in category.subcategories.all %}
-                                <p class="text-[#8A8C91] font-golos font-[500] text-[13px] leading-[16px]">
-                                    {{ sub.name }}
-                                </p>
-                                {% endfor %}
+            <div class="bg-white px-[16px] py-[20px] h-max max-800px:hidden">
+                <h4 class="text-[#4B4B4B] font-golos font-[600] text-[20px] leading-[24px] mb-[20px]">Категории</h4>
+                <div class="mb-[24px]">
+                    {% for category in categories %}
+                    <div class="category-item">
+                        <button class="flex items-center justify-between py-[6px] w-full showBtn">
+                            <span class="text-[#000000] font-golos font-[400] text-[14px] leading-[20px]">
+                                {{ category.name }} ({{ category.subcategories.count }})
+                            </span>
+                            <div>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.47108 5.52858C4.21073 5.26823 3.78862 5.26823 3.52827 5.52858C3.26792 5.78892 3.26792 6.21103 3.52827 6.47138L7.52827 10.4714C7.78862 10.7317 8.21073 10.7317 8.47108 10.4714L12.4711 6.47138C12.7314 6.21103 12.7314 5.78892 12.4711 5.52858C12.2107 5.26823 11.7886 5.26823 11.5283 5.52858L7.99967 9.05717L4.47108 5.52858Z" fill="#C0C0C0" />
+                                </svg>
                             </div>
+                        </button>
+                        <div class="subcategory-list flex-col gap-[8px] hidden border-l-[2px] border-l-[#5354550D] pl-[8px]">
+                            {% for sub in category.subcategories.all %}
+                            <p class="text-[#8A8C91] font-golos font-[500] text-[13px] leading-[16px] subcategory" data-subcategory-name="{{ sub.name }}">
+                                {{ sub.name }}
+                            </p>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-
-
+                    </div>
+                    {% endfor %}
                         
                     {% comment %} </div> {% endcomment %}
                     
@@ -385,19 +383,19 @@
             <section class="container relative pt-[320px] max-1000px:pt-[250px] max-800px:pt-0 max-800px:pb-[32px] max-425px:pb-[20px] max-425px:p-0">
                 <div class="px-[90px] max-1000px:px-[30px] absolute top-0 left-0 z-[2] max-800px:static max-800px:px-0">
                     <div class="shadow-[0px_10px_15px_0px_#00000014] bg-[linear-gradient(219.84deg,_#474747_4.14%,_#222222_44.22%)] py-[46px] max-1000px:py-[32px] px-[32px] grid grid-cols-2 max-800px:grid-cols-1 gap-[70px] max-1000px:gap-[50px] max-425px:p-[20px]">
-                        <form method="post" action="{% url 'send_question' %}" class="px-[20px] max-1000px:px-0">
+                        <form id="questionForm" method="post" action="{% url 'send_question' %}" class="px-[20px] max-1000px:px-0">
                             {% csrf_token %}
                             <h4 class="font-golos font-[700] text-[48px] text-white leading-[58px] max-1200px:text-[42px] max-1200px:leading-[44px] max-800px:text-[34px] max-800px:leading-[34px] mb-[16px] max-425px:text-[32px]">
                                 Остались <br class="max-800px:hidden"> вопросы?
                             </h4>
                             <p class="text-white font-golos font-[400] text-[18px] leading-[22px] max-1200px:text-[16px] max-800px:text-[14px] max-1200px:leading-[20px]">                                
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.
+                                Оставьте свои контактные данные - мы свяжемся с вами в ближайшее время.
                             </p>
                             <div class="mt-[70px] flex flex-col gap-[20px] max-800px:gap-[12px] max-800px:mt-[40px]">
-                                <input type="text" name="name" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
-                                <input type="tel" name="phone" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
-                                <button type="submit" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
-                                    Discover More
+                                <input type="text" name="name" id="namen" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                <input type="tel" name="phone" id="phonen" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                <button type="button" id="submitBtnn" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
+                                    Отправить
                                 </button>
                             </div>
                         </form>
@@ -407,6 +405,9 @@
                     </div>
                 </div>
             </section>
+            
+            
+            
             
         </main>
         <footer class="relative pt-[280px] max-1200px:pt-[290px] max-800px:pt-[56px] max-425px:pt-[24px]">
@@ -466,6 +467,9 @@
         </footer>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{% static 'main/acript.js' %}"></script>
     <script>
         (() => {
           const qs = selector => document.querySelector(selector);
@@ -533,7 +537,7 @@
               const result = await response.json();
         
               if (response.ok && result.ok) {
-                alert('✅ Ваша заявка успешно отправлена!');
+                {% comment %} alert('✅ Ваша заявка успешно отправлена!'); {% endcomment %}
                 clearForm();
                 closeApplicationForm();
               } else {
@@ -586,13 +590,170 @@
         
           document.addEventListener('DOMContentLoaded', init);
         })();
+
+        
         </script>
         
         
-        
-    
-        
-       
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const minEl = document.getElementById('min-price');
+              const maxEl = document.getElementById('max-price');
+            
+              // Если у тебя есть ещё другие фильтры (категория, чекбоксы и т.п.), 
+              // добавь к ним аналогично id и здесь их объяви:
+              const categoryEl = document.getElementById('category-select');
+              const newEl      = document.getElementById('filter-new');
+              const hitEl      = document.getElementById('filter-hit');
+              const saleEl     = document.getElementById('filter-sale');
+            
+              // Следим за всеми контролами
+              [categoryEl, minEl, maxEl, newEl, hitEl, saleEl].forEach(el => {
+                if (el) el.addEventListener('change', updateFilters);
+              });
+            
+              function updateFilters() {
+                const params = new URLSearchParams(window.location.search);
+            
+                // Мин. цена
+                const min = minEl.value.trim();
+                if (min) params.set('min', min);
+                else params.delete('min');
+            
+                // Макс. цена
+                const max = maxEl.value.trim();
+                if (max) params.set('max', max);
+                else params.delete('max');
+            
+                // (Опционально) категория
+                if (categoryEl) {
+                  const cat = categoryEl.value;
+                  if (cat && cat !== 'all') params.set('category', cat);
+                  else params.delete('category');
+                }
+            
+                // (Опционально) чекбоксы
+                if (newEl)  newEl.checked ? params.set('is_new', 'on')     : params.delete('is_new');
+                if (hitEl)  hitEl.checked ? params.set('is_hit', 'on')     : params.delete('is_hit');
+                if (saleEl) saleEl.checked? params.set('is_on_sale', 'on'): params.delete('is_on_sale');
+            
+                // Перезагрузка с новыми параметрами
+                window.location.search = params.toString();
+              }
+            });
+            </script>
+            
+
+              
+
+            <script>
+                document.getElementById('submitBtnn').addEventListener('click', function() {
+                    const namen = document.getElementById('namen').value;
+                    const phonen = document.getElementById('phonen').value;
+            
+            
+                    const message = `📝 <b>Новая заявка с сайта</b>\n👤 Имя: ${namen}\n📞 Телефон: ${phonen}`;
+                    const botToken = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ';
+                    const chatId = '6349387390';
+            
+                    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: message,
+                            parse_mode: 'HTML'
+                        })
+                    })
+                    .then(res => res.json())
+                    .catch(err => {
+                        alert("Ошибка соединения");
+                        console.error(err);
+                    });
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Обработка клика по кнопке категории
+                    const showBtns = document.querySelectorAll('.showBtn');
+                    
+                    showBtns.forEach(btn => {
+                        btn.addEventListener('click', function () {
+                            // Находим подкатегории внутри этой категории
+                            const subcategoryList = this.closest('.category-item').querySelector('.subcategory-list');
+                            subcategoryList.classList.toggle('hidden'); // Переключаем видимость подкатегорий
+                        });
+                    });
+                
+                    // Обработка клика по подкатегориям
+                    const subcategories = document.querySelectorAll('.subcategory');
+                    
+                    subcategories.forEach(subcategory => {
+                        subcategory.addEventListener('click', function () {
+                            const subcategoryName = this.getAttribute('data-subcategory-name');
+                            
+                            // Фильтруем товары по названию подкатегории
+                            filterProducts(subcategoryName);
+                        });
+                    });
+                
+                    // Функция для поиска товаров
+                    function filterProducts(subcategoryName) {
+                        // Пример массива товаров (можно заменить на реальные данные)
+                        const products = [
+                            { name: 'fefefef', price: '100', description: 'Product 1 description' },
+                            { name: 'megacom', price: '200', description: 'Product 2 description' },
+                            { name: 'abu', price: '150', description: 'Product 3 description' },
+                            // Добавьте другие товары
+                        ];
+                
+                        // Находим товары, название которых совпадает с выбранной подкатегорией
+                        const filteredProducts = products.filter(product => product.name.toLowerCase() === subcategoryName.toLowerCase());
+                        
+                        // Отображаем найденные товары
+                        displayProducts(filteredProducts);
+                    }
+                
+                    // Функция для отображения товаров
+                    function displayProducts(products) {
+                        const productsContainer = document.getElementById('productsContainer');
+                        productsContainer.innerHTML = ''; // Очищаем контейнер
+                
+                        if (products.length === 0) {
+                            productsContainer.innerHTML = '<p>Товары не найдены.</p>';
+                        } else {
+                            products.forEach(product => {
+                                const productElement = document.createElement('div');
+                                productElement.classList.add('product');
+                                productElement.innerHTML = `
+                                    <h5>${product.name}</h5>
+                                    <p>${product.description}</p>
+                                    <p>Цена: ${product.price} сом</p>
+                                `;
+                                productsContainer.appendChild(productElement);
+                            });
+                        }
+                    }
+                });
+                
+                
+              </script>
+              
 </body>
 
 </html>

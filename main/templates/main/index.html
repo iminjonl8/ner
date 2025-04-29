@@ -183,10 +183,10 @@
                     <div class="swiper-wrapper">
                       <div class="swiper-slide">
                         <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden">
-                            <div class="h-[155px]">
+                            {% comment %} <div class="h-[155px]">
                                 <img src="./assets/img/custom_6.jpeg" class="w-full h-full object-contain mix-blend-multiply">
-                            </div>
-                            <div class="px-[16px] pb-[16px]">
+                            </div> {% endcomment %}
+                            {% comment %} <div class="px-[16px] pb-[16px]">
                                 <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">Нержавейка</a>
                                 <a href="#" class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et,</a>
                                 <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
@@ -195,15 +195,15 @@
                                     <a href="#" class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">$1,800 <span class="text-[#9C9C9C] font-[400]">/day</span></a>
                                 </div>
                                 <button class="font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</button>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                       </div>
-                      <div class="swiper-slide">
+                       <div class="swiper-slide">
                         <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden">
-                            <div class="h-[155px]">
+                            {% comment %} <div class="h-[155px]">
                                 <img src="{% static 'main/img/custom_6.jpeg' %}" class="w-full h-full object-contain mix-blend-multiply">
-                            </div>
-                            <div class="px-[16px] pb-[16px]">
+                            </div> {% endcomment %}
+                            {% comment %} <div class="px-[16px] pb-[16px]">
                                 <a href="#" class="text-[#262626] font-golos font-[500] text-[20px] leading-[18px] mb-[12px] block">Нержавейка</a>
                                 <a href="#" class="text-[#333333CC] font-inter font-[400] text-[14px] leading-[16px] block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et,</a>
                                 <div class="bg-[#E0E0E080] w-full h-[1px] my-[24px]"></div>
@@ -212,12 +212,12 @@
                                     <a href="#" class="text-[#292929] font-golos font-[600] text-[16px] leading-[17px]">$1,800 <span class="text-[#9C9C9C] font-[400]">/day</span></a>
                                 </div>
                                 <button class="font-poppins font-[600] text-[16px] leading-[24px] bg-[#1572D3] w-full text-white py-[13px]">Discover More</button>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                       </div>
                     </div>
                   </div> 
-                 
+                  
                   <div class="grid grid-cols-4 gap-[24px] max-1000px:grid-cols-2 max-600px:grid-cols-1">
                     {% for product in products %}
                     <div class="shadow-[0px_4px_16px_0px_#0000000D] rounded-tl-[16px] rounded-tr-[16px] overflow-hidden bg-white">
@@ -366,7 +366,7 @@
                                 <input type="text" name="name" id="name" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
                                 <input type="tel" name="phone" id="phone" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
                                 <button type="button" id="submitBtn" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
-                                    Discover More
+                                    Отправить
                                 </button>
                             </div>
                         </form>
@@ -434,10 +434,10 @@
                 <div>
                     <div class="flex justify-between max-600px:flex-wrap max-600px:gap-[24px]">
                         <div>
-                            <a href="https://t.me/+996998666555" class="text-white font-golos font-[600] text-[24px] leading-[29px]">Нержавейка</a>
+                            <a href="#" class="text-white font-golos font-[600] text-[24px] leading-[29px]">Нержавейка</a>
                             <p class="text-white font-golos font-[400] text-[16px] leading-[28px] my-[24px] max-w-[547px] max-1000px:max-w-[450px]">Интернет-магазин запчастей из нержавеющей стали и сервис по оказанию профильных услуг. Более 5 лет опыта в надежных решениях для вашего бизнеса и дома.</p>
                             <div class="flex items-center gap-[7px]">
-                                <a href="" class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
+                                <a href="https://t.me/+996998666555"  class="w-[40px] h-[40px] rounded-full flex items-center justify-center relative overflow-hidden">
                                     <div class="w-full h-full absolute top-0 left-0 bg-[#2387C0] opacity-[10%]"></div>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0ZM14.442 6C14.061 6.007 13.476 6.207 10.663 7.362C8.68848 8.18629 6.71944 9.02365 4.756 9.874C4.276 10.0627 4.025 10.247 4.003 10.427C3.959 10.773 4.463 10.88 5.097 11.084C5.614 11.25 6.31 11.444 6.672 11.452C7 11.4587 7.366 11.3253 7.77 11.052C10.5293 9.212 11.9537 8.28233 12.043 8.263C12.106 8.249 12.193 8.231 12.253 8.283C12.312 8.335 12.306 8.433 12.299 8.46C12.249 8.671 9.658 10.998 9.509 11.151L9.437 11.223C8.887 11.766 8.332 12.121 9.29 12.744C10.156 13.307 10.66 13.666 11.55 14.244C12.12 14.612 12.567 15.049 13.155 14.996C13.426 14.971 13.705 14.72 13.848 13.97C14.183 12.2 14.843 8.362 14.995 6.78C15.0046 6.64878 14.9989 6.5169 14.978 6.387C14.9657 6.28209 14.9142 6.18569 14.834 6.117C14.713 6.019 14.525 5.999 14.442 6Z" fill="white" />
