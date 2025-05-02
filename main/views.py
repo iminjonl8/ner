@@ -201,25 +201,35 @@ def category_view(request):
     })
 
 
+from .models import Product, Car, GalleryItem
+from django.shortcuts import render, get_object_or_404
 
 def product_detail_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
     similar_products = Product.objects.filter(subcategory=product.subcategory).exclude(pk=pk)
     similar_count = similar_products.count()
     car = Car.objects.first()
+    
     if similar_count >= 4:
         products = similar_products[:4]
     else:
         extra_needed = 4 - similar_count
         others = Product.objects.exclude(pk__in=similar_products.values_list('pk', flat=True)).exclude(pk=pk)[:extra_needed]
         products = list(similar_products) + list(others)
+
+    gallery_items = GalleryItem.objects.select_related('service').order_by('-created_at')[:4]
+
     return render(request, 'main/product_detail.html', {
         'product': product,
         'car': car,
-        'products': products
+        'products': products,
+        'gallery_items': gallery_items,
     })
 
 
+
+ 
+ 
 @csrf_exempt
 def send_question(request):
     if request.method == 'POST':
@@ -241,3 +251,5 @@ def error_505_view(request):
 def shop_view(request):
     categories = Category.objects.prefetch_related('subcategories').all()
     return render(request, 'shop.html', {'categories': categories})
+
+

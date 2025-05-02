@@ -103,7 +103,8 @@
                 </header>
             </div>
             <main class="bg-[#F6F7F9]">
-                <section class="container flex gap-[32px] pt-[32px] max-1000px:flex-col">
+                <!-- Mahsulot rasmi va info -->
+  <section class="container flex gap-[32px] pt-[32px] max-1000px:flex-col">
                     <!-- Левая колонка: Галерея картинок -->
                     <div class="w-[516px] max-1000px:w-full">
                         <div class="swiper mySwiper2 h-[313px] max-600px:h-[190px]">
@@ -171,7 +172,6 @@
                     </div>
                 </section>
                 
-                
                     {% comment %} <div class="bg-white p-[24px] w-full max-600px:p-0 max-600px:bg-transparent">
                         <h1 class="text-[#1A202C] font-inter font-[700] mb-[24px] base_title_text">{{ car.title }}</h1>
                         <p class="text-[#596780] font-plus font-[400] text-[20px] leading-[24px] mb-[60px] max-600px:mb-0 max-600px:text-[14px] max-600px:leading-[22px]">
@@ -220,17 +220,27 @@
                 </section>
                 <section class="container py-[94px] max-1000px:py-[32px]">
                     <div class="flex items-center justify-between mb-[32px]">
-                        <h4 class="text-[#242527] font-golos font-[600] base_title_text">Наши завершенные <br> работы</h4>
-                        <button class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">Показать все</button>
+                        <h4 class="text-[#242527] font-golos font-[600] base_title_text">Наши завершенные работы</h4>
+                        <a href="{% url 'gallery' %}" class="text-white font-golos font-[600] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
+                            Показать все
+                        </a>
                     </div>
                     <div class="flex flex-col gap-[16px]">
-                        <div class="grid grid-rows-[230px_230px] max-1000px:grid-rows-[150px_150px] max-800px:grid-rows-[100px_100px] grid-cols-[515px_1fr] max-1000px:grid-cols-[250px_1fr] gap-[16px] max-800px:gap-[8px] max-600px:grid-cols-2 max-600px:grid-rows-[229px_170px]">
-                            <img src="{% static 'main/img/custom_7.jpeg' %}" class="w-full h-full object-cover row-[1/2] max-600px:row-[2/2]">
-                            <img src="{% static 'main/img/custom_7.jpeg' %}" class="w-full h-full object-cover row-[2/3]">
-                            <img src="{% static 'main/img/custom_7.jpeg' %}" class="w-full h-full object-cover row-[1/3] max-600px:row-[1/1] max-600px:col-[1/3]">
+                        <div class="grid grid-cols-4 max-1000px:grid-cols-3 max-600px:grid-cols-2 max-425px:grid-cols-1 gap-[16px] max-800px:gap-[8px]">
+                            {% for item in gallery_items %}
+                                <div class="h-[214px]">
+                                    <img src="{{ item.image.url }}" alt="{{ item.service.title }}" class="w-full h-full object-cover rounded-[8px]">
+                                    <p class="mt-2 text-center text-[#333] font-golos font-[500] text-[14px]">
+                                        {{ item.service.title }}
+                                    </p>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </section>
+                
+                
+                
                 <section class="container pb-[94px] max-1000px:pb-[32px]">
                     <div class="flex items-center justify-between mb-[19px]">
                         <h4 class="text-[#000000] font-golos font-[600] text-[20px] leading-[30px]">Похожие товары</h4>
@@ -386,66 +396,19 @@
                 </section>
                 
                 <script>
-                    document.getElementById('submitBtn').addEventListener('click', function() {
-                        const name = document.getElementById('name').value;
-                        const phone = document.getElementById('phone').value;
-
-                        
-                        // Tekshirish va ma'lumotlar yig'ish
-                        if (!name || !phone) {
-                            alert("Iltimos, barcha maydonlarni to'ldiring!");
-                            return;
-                        }
-                
-                        const message = `
-                            📝 <b>Новая заявка с сайта</b>
-                            👤 Имя: ${name}
-                            📞 Телефон: ${phone}
-                        `;
-                
-                        const botToken = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ';
-                        const chatId = '6349387390';
-                        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-                
-                        const payload = {
-                            chat_id: chatId,
-                            text: message,
-                            parse_mode: "HTML"
-                        };
-                
-                        // Telegram API ga so'rov yuborish
-                        fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(payload)
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Telegram response:', data);
-                            {% comment %} alert('Заявка отправлена!'); {% endcomment %}
-                            // Tozalash formadan
-                            document.getElementById('name').value = '';
-                            document.getElementById('phone').value = '';
-                        })
-                        .catch(error => {
-                            console.error('Ошибка при отправке заявки:', error);
-                            alert('Ошибка при отправке заявки. Попробуйте снова.');
-                        });
-                    });
-
-
-
                     document.getElementById('submitBtnn').addEventListener('click', function() {
                         const namen = document.getElementById('namen').value;
                         const phonen = document.getElementById('phonen').value;
-                
-                
+                    
+                        if (!namen || !phonen) {
+                            alert("Iltimos, barcha maydonlarni to‘ldiring!");
+                            return;
+                        }
+                    
                         const message = `📝 <b>Новая заявка с сайта</b>\n👤 Имя: ${namen}\n📞 Телефон: ${phonen}`;
                         const botToken = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ';
                         const chatId = '6349387390';
-                
+                    
                         fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                             method: 'POST',
                             headers: {
@@ -458,11 +421,19 @@
                             })
                         })
                         .then(res => res.json())
+                        .then(data => {
+                            // Tozalash
+                            document.getElementById('namen').value = '';
+                            document.getElementById('phonen').value = '';
+                            // Bosh menyuga qaytish
+                            window.location.href = '/';
+                        })
                         .catch(err => {
                             alert("Ошибка соединения");
                             console.error(err);
                         });
                     });
+                    
                 </script>
                 
             </main>
@@ -505,18 +476,12 @@
                                         <a href="{% url 'gallery' %}" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Галерея</a>
                                     </div>
                                 </div>
-                                <div>
-                                    <p class="text-white font-golos font-[700] text-[18px] leading-[22px] mb-[32px]">Еще</p>
-                                    <div class="flex flex-col gap-[16px]">
-                                        <a href="#" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Контакты</a>
-                                        <a href="#" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Адрес</a>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                         <div class="flex items-center justify-between mt-[43px] pb-[56px] max-425px:pb-[24px]">
                             <p class="text-white font-nunito font-[500] text-[12px] leading-[16px]">Создание сайта <a href="#" class="font-[700]">'PROlab Agency'</a></p>
-                            <p class="text-white font-nunito font-[500] text-[12px] leading-[16px]">© 2024 Все права защищены. </p>
+                            <p class="text-white font-nunito font-[500] text-[12px] leading-[16px]">© 2025 Все права защищены. </p>
                         </div>
                     </div>
                 </div>

@@ -126,24 +126,24 @@
             <section class="container relative pt-[320px] max-1000px:pt-[250px] max-800px:pt-0 max-800px:pb-[32px] max-425px:pb-[20px] max-425px:p-0">
                 <div class="px-[90px] max-1000px:px-[30px] absolute top-0 left-0 z-[2] max-800px:static max-800px:px-0">
                     <div class="shadow-[0px_10px_15px_0px_#00000014] bg-[linear-gradient(219.84deg,_#474747_4.14%,_#222222_44.22%)] py-[46px] max-1000px:py-[32px] px-[32px] grid grid-cols-2 max-800px:grid-cols-1 gap-[70px] max-1000px:gap-[50px] max-425px:p-[20px]">
-                        <form method="post" action="{% url 'send_question' %}" class="px-[20px] max-1000px:px-0">
+                        <form id="questionForm" method="post" action="{% url 'send_question' %}" class="px-[20px] max-1000px:px-0">
                             {% csrf_token %}
                             <h4 class="font-golos font-[700] text-[48px] text-white leading-[58px] max-1200px:text-[42px] max-1200px:leading-[44px] max-800px:text-[34px] max-800px:leading-[34px] mb-[16px] max-425px:text-[32px]">
                                 Остались <br class="max-800px:hidden"> вопросы?
                             </h4>
                             <p class="text-white font-golos font-[400] text-[18px] leading-[22px] max-1200px:text-[16px] max-800px:text-[14px] max-1200px:leading-[20px]">                                
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.
+                                Оставьте свои контактные данные - мы свяжемся с вами в ближайшее время.
                             </p>
                             <div class="mt-[70px] flex flex-col gap-[20px] max-800px:gap-[12px] max-800px:mt-[40px]">
-                                <input type="text" name="name" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
-                                <input type="tel" name="phone" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
-                                <button type="submit" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
-                                    Discover More
+                                <input type="text" name="name" id="namen" placeholder="Имя" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                <input type="tel" name="phone" id="phonen" placeholder="Номер телефона" class="outline-none placeholder:text-[#979797] font-golos font-[400] text-[16px] leading-[19px] bg-[#FFFFFF14] py-[18px] px-[22px] text-white max-800px:py-[13px]">
+                                <button type="button" id="submitBtnn" class="text-white font-golos font-[600] shadow-[0px_10px_15px_0px_#01739933] bg-[linear-gradient(97.65deg,_#60BBEE_0.33%,_#0A72AD_93.35%)] base_btn">
+                                    Отправить
                                 </button>
                             </div>
                         </form>
                         <div class="flex items-center justify-center max-800px:hidden">
-                            <img src="{% static "main/img/custom_8.png" %}" class="w-[441px] h-[441px] object-contain">
+                            <img src="{% static 'main/img/custom_8.png' %}" class="w-[441px] h-[441px] object-contain">
                         </div>
                     </div>
                 </div>
@@ -188,13 +188,7 @@
                                     <a href="{% url 'gallery' %}" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Галерея</a>
                                 </div>
                             </div>
-                            <div>
-                                <p class="text-white font-golos font-[700] text-[18px] leading-[22px] mb-[32px]">Еще</p>
-                                <div class="flex flex-col gap-[16px]">
-                                    <a href="#" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Контакты</a>
-                                    <a href="#" class="text-white font-golos font-[400] text-[16px] leading-[18px]">Адрес</a>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="flex items-center justify-between mt-[43px] pb-[56px] max-425px:pb-[24px]">
@@ -207,6 +201,56 @@
     </div>
 
     <script src="{% static 'main/acript.js' %}"></script>
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Tekshirish va ma'lumotlar yig'ish
+            if (!name || !phone) {
+                alert("Iltimos, barcha maydonlarni to'ldiring!");
+                return;
+            }
+    
+            const message = `
+                📝 <b>Новая заявка с сайта</b>
+                👤 Имя: ${name}
+                📞 Телефон: ${phone}
+            `;
+    
+            const botToken = '7558537687:AAGVPTcTPk1LYyzrnVTbSRj4TUsRkIBmBXQ';
+            const chatId = '6349387390';
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    
+            const payload = {
+                chat_id: chatId,
+                text: message,
+                parse_mode: "HTML"
+            };
+    
+            // Telegram API ga so'rov yuborish
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Telegram response:', data);
+                {% comment %} alert('Заявка отправлена!'); {% endcomment %}
+                // Tozalash formadan
+                document.getElementById('name').value = '';
+                document.getElementById('phone').value = '';
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке заявки:', error);
+                alert('Ошибка при отправке заявки. Попробуйте снова.');
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

@@ -96,7 +96,6 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='products/extra/')
@@ -184,7 +183,7 @@ class Car(models.Model):
 
 class CarImage(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='cars/')
+    image = models.ImageField(upload_to='cars/images/')
 
     def __str__(self):
         return f"Изображение для {self.car.title}"
